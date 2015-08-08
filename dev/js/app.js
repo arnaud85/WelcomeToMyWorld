@@ -1,3 +1,5 @@
+"use strict";
+
 $(document).ready( function() {
 
 	// FIXED NAVBAR
@@ -24,7 +26,7 @@ $(document).ready( function() {
             
             $('body').addClass('body-push');
 
-            $(this).on('click', function(e) {
+            $(this).on('click', function() {
 
             	$('nav').toggleClass('navbar-fixed-top');
                 
@@ -39,7 +41,7 @@ $(document).ready( function() {
 	$('.carousel').carousel( {
   		
   		interval: 5000
-	})
+	});
 
 
 });

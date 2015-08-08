@@ -3,8 +3,12 @@ var gulp = require('gulp'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer'),
     minifycss = require('gulp-minify-css'),
-    jshint = require('gulp-jshint'),
     uglify = require('gulp-uglify'),
+    concat = require('gulp-concat'),
+    htmlhint = require("gulp-htmlhint"),
+    scsslint = require('gulp-scss-lint'),
+    jshint = require('gulp-jshint'),
+    rename = require('gulp-rename'),
     notify = require('gulp-notify'),
     browserSync = require('browser-sync').create();
 
@@ -34,7 +38,8 @@ const distFolder = {
 
 };
 
-// WATCH FOR CHANGES IN HTML/SCSS FILES
+
+// WATCH FOR CHANGES IN HTML/SCSS/JS FILES
 gulp.task('watch', function () {
 
     browserSync.init({
@@ -48,32 +53,31 @@ gulp.task('watch', function () {
 
     });
 
-    gulp.watch(devFolder.sass + "*.scss", ['sass']);
+    gulp.watch(devFolder.sass + "*.scss", ['style']);
     gulp.watch(devFolder.js + "*.js", ['scripts']);
     gulp.watch(roots.base + "*.html").on("change", browserSync.reload);
 });
 
-// SCSS -> CSS
-gulp.task('sass', function() {
+// STYLE
+gulp.task('style', function() {
     
     return gulp.src(devFolder.sass + "*.scss")
     	.pipe(sass())
-        .pipe(autoprefixer('last 2 version'))
+        .on('error', notify.onError("Error: <%= error.message %>"))
+        .pipe(rename({ suffix: '.min' }))
+        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
         .pipe(minifycss())
         .pipe(gulp.dest(distFolder.css))
         .pipe(browserSync.stream())
-        .pipe(notify({ message: 'SASS task complete' }));
+        .pipe(notify({ message: 'Style task complete' }));
 });
 
 // SCRIPTS
 gulp.task('scripts', function() {
 
-    return gulp.src(devFolder.js + "*.js")
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('default'))
-        // .pipe(concat('main.js'))
-        // .pipe(gulp.dest(distFolder.js))
-        // .pipe(rename({ suffix: '.min' }))
+    return gulp.src([devFolder.js+'jquery-2.1.4.js', devFolder.js+'bootstrap.js', devFolder.js+'app.js'])
+        .pipe(concat('app.js'))
+        .pipe(rename({ suffix: '.min' }))
         .pipe(uglify())
         .pipe(gulp.dest(distFolder.js))
         .pipe(browserSync.stream())
@@ -81,4 +85,28 @@ gulp.task('scripts', function() {
 });
 
 
+// TESTS
+gulp.task('htmlhint', function() {
+    
+    return gulp.src(roots.base + '*.html')
+    .pipe(htmlhint())
+    .pipe(htmlhint.reporter());
+});
+
+gulp.task('scsslint', function() {
+
+    return gulp.src(devFolder.sass + 'style.scss')
+    .pipe(scsslint());
+});
+
+gulp.task('jshint', function(){
+
+    return gulp.src(devFolder.js+'app.js')
+    .pipe(jshint('.jshintrc'))
+    .pipe(jshint.reporter('default'));
+})
+
+gulp.task('test', ['htmlhint', 'scsslint', 'jshint']);
+
+// MAIN
 gulp.task('default', ['watch']);

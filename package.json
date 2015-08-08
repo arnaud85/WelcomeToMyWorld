@@ -1,0 +1,24 @@
+{
+  "name": "welcome_to_my_world",
+  "version": "1.0.0",
+  "description": "My website V3.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/arnaud85/WelcomeToMyWorld.git"
+  },
+  "author": "Arnaud Biegun",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/arnaud85/WelcomeToMyWorld/issues"
+  },
+  "homepage": "https://github.com/arnaud85/WelcomeToMyWorld#readme",
+  "devDependencies": {
+    "browser-sync": "^2.8.2",
+    "gulp": "^3.9.0",
+    "gulp-sass": "^2.0.4"
+  }
+}

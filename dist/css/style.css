@@ -1,2 +1,83 @@
-p {
-  color: red; }
+/************************ MAIN ******************/
+body {
+  padding-top: 60px; }
+
+/***************** END OF MAIN******************/
+/******************** NAVBAR ***********************/
+.navbar {
+  min-height: 60px;
+  background-color: #2196F3; }
+
+.navbar-nav > li > a {
+  padding: 0 15px 0 15px;
+  height: 60px;
+  line-height: 60px;
+  text-align: center; }
+
+.navbar-default .navbar-toggle .icon-bar {
+  background-color: #FFF; }
+
+.navbar-default .navbar-nav > li > a:hover,
+.navbar-default .navbar-nav > li > a:focus {
+  color: #1565c0;
+  background-color: transparent; }
+
+.navbar-default .navbar-nav > li > a {
+  color: #FFF; }
+
+.scrolled {
+  opacity: 0.7;
+  height: 50px;
+  line-height: 50px; }
+
+.navbar-toggle {
+  border: none;
+  float: left;
+  padding-left: 20px; }
+
+.navbar-default .navbar-toggle:hover,
+.navbar-default .navbar-toggle:focus {
+  background-color: transparent; }
+
+/***************** END OF NAVBAR ******************/
+/********************* THUMBNAIL *******************/
+.thumbnail img {
+  width: 100%;
+  height: auto; }
+
+/****************** END OF THUMBNAIL ***************/
+/*********************** RESPONSIVE ****************/
+@media screen and (max-width: 767px) {
+  body {
+    padding-top: 0; }
+  .body-push {
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    overflow-x: hidden;
+    position: relative;
+    left: 0; }
+  .body-push.pushed-right {
+    left: 50%; }
+  .navbar-push {
+    -webkit-transition: all 0.25s ease-out;
+    -moz-transition: all 0.25s ease-out;
+    -o-transition: all 0.25s ease-out;
+    transition: all 0.25s ease-out;
+    position: fixed;
+    top: 0;
+    left: -50%;
+    height: 100%;
+    width: 50%;
+    background-color: #1976d2;
+    padding-right: 25px;
+    padding-left: 25px;
+    margin-left: 0;
+    margin-right: 0; }
+  .navbar-push.in {
+    left: 0; }
+  .navbar-push ul > li > a {
+    border-bottom: 1px solid #0d47a1; } }
+
+/************** END OF RESPONSIVE ****************/

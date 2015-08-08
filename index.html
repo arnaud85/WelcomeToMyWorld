@@ -1,40 +1,197 @@
 <!DOCTYPE html>
+
 <html>
+
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Lorem ipsum</title>
-	<link rel="stylesheet" type="text/css" href="/dist/css/bootstrap.css">
-	<link rel="stylesheet" type="text/css" href="/dist/css/style.css">
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Accueil</title>
+	<link rel="stylesheet" href="/dist/css/bootstrap.css">
+	<link rel="stylesheet" href="/dist/css/style.css">
 </head>
+
 <body>
 
-	<div class="container">
-
-		<h1>Lorem ipsum dolor sit amet</h1>
-
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-		tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-		quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-		consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-		cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-		proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Accueil</a></li>
+					<li><a href="#">Auteur</a></li>
+					<li><a href="#">Sciences</a></li>
+					<li><a href="#">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav>  	
+	
+	<div class="carousel slide" id="main_carousel">
+		
+		<ol class="carousel-indicators">
+			<li data-target="#main_carousel" data-slide-to="0" class="active"></li>
+			<li data-target="#main_carousel" data-slide-to="1"></li>
+			<li data-target="#main_carousel" data-slide-to="2"></li>
+		</ol>
+		
+		<div class="carousel-inner">
+			<div class="item active"> 
+				<img src="/dist/img/world.jpeg" alt="Welcome to my world">
+				<div class="carousel-caption">
+					<h1>Welcome to my world</h1>
+					<h3>Un site qui vous propose ...</h3>
+				</div>
+			</div>
+		    <div class="item"> 
+				<img src="/dist/img/sciences.jpeg" alt="Sciences">
+				<div class="carousel-caption">
+					<h1>Un peu de sciences ...</h1>
+					<h3>Pour se nourrir l'esprit</h3>
+				</div>
+		    </div>
+    		<div class="item"> 
+    			<img src="/dist/img/fight.jpeg" alt="Fight">
+    			<div class="carousel-caption">
+					<h1>Et un peu de sport ...</h1>
+					<h3>Parce que c'est quand même bon pour la santé !</h3>
+				</div>
+    		</div>
+		</div>
+		
 	</div>
 
+	<div class="container">
+	
+		<div class="row">
+		
+			<h1>A propos de l'auteur</h1><br>
+
+			<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/cv.jpg" alt="curriculum vitae">
+					<div class="caption">
+						<h2>Curriculum Vitae</h2>
+						<p>Vous trouverez ici mon curriculum vitae. Venez par ici si vous désirez une présentation officielle de l'auteur en bonne et dûe forme!</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+			<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/contacts.png" alt="contacts">
+					<div class="caption">
+						<h2>Contacts</h2>
+						<p>Si vous voulez me contacter pour me faire diverses remarques sur le site ou bien me parler de quelquechose dont vous avez envie, allez-y !</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+		</div>
+
+		<div class="row">
+
+			<h1>Sciences</h1><br>
+		
+			<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/physics.jpg" alt="Physique">
+					<div class="caption">
+						<h2>Physique</h2>
+						<p>De la Terre jusqu'aux plus lointaines galaxies, de Newton à Einstein, partez à la découverte de l'univers et de ses mystères, et bien plus encore!</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+			<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/computing.jpg" alt="Informatique">
+					<div class="caption">
+						<h2>Informatique</h2>
+						<p>Apprenez à domestiquer cette entité bizarre ne sachant communiquer exclusivement qu'avec des 0 et des 1, encore appelée "un ordinateur"!</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+		  	<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/finance.jpg" alt="Finance">
+					<div class="caption">
+						<h2>Finance</h2>
+						<p>Devenez enfin le prince de la finance qui sommeille en vous et cessez donc de compter sur la Française des Jeux pour assurer votre fortune!</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+		</div>
+
+		<div class="row">
+
+			<h1>Sport</h1><br>
+		
+			<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/krav.jpg" alt="Krav Maga">
+					<div class="caption">
+						<h2>Krav Maga</h2>
+						<p>Découvrez une méthode de self-défense d'origine israélienne qui est connue pour avoir du punch!</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+			<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/bjj.jpg" alt="BJJ">
+					<div class="caption">
+						<h2>Jiu-Jitsu Brésilien</h2>
+						<p>Venez apprendre un art martial d'origine carioca pour enfin pouvoir faire le malin sur la plage l'été!</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+		  	<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/thai.jpg" alt="Muay Thai">
+					<div class="caption">
+						<h2>Muay Thai</h2>
+						<p>Découvrez un art martial millénaire qui est à l'origine de bien des légendes et surtout de quelques bobos!</p>
+						<p><a href="#" class="btn btn-primary" role="button">Voir</a></p>
+					</div>
+		    	</div>
+		  	</div>
+
+		  	<div class="col-sm-6 col-md-4">
+		    	<div class="thumbnail">
+		      		<img src="/dist/img/mma.jpg" alt="MMA">
+					<div class="caption">
+						<h2>Mixed Martial Arts</h2>
+						<p>Découvrez ce cocktail explosif qui mixe les techniques les plus efficaces des tous les sports de combat!</p>
+					</div>
+		    	</div>
+		  	</div>
+
+		</div>
+
+	</div>
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+	<script src="/dist/js/bootstrap.js"></script>
+	<script src="/dist/js/app.js"></script>
+	
 </body>
+
 </html>

@@ -18,6 +18,7 @@ APP ROOT:
 
 SUBLIM TEXT:
 - alias sub="subl"
+- alias subw="sub /Users/arnaud/Code/WelcomeToMyWorld"
 
 GIT:
 - alias gcmail="git config --global user.mail"

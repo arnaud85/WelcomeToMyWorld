@@ -13,7 +13,10 @@ Two folders:
 # CONFIG
 Keep these aliases into your .bash_profile (Mac) or your .bashrc (Linux) to roxx your skills :
 
-Sublime Text:
+APP ROOT:
+- alias wmw="cd /Users/arnaud/Code/WelcomeToMyWorld"
+
+SUBLIM TEXT:
 - alias sub="subl"
 
 GIT:

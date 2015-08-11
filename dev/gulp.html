@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Gulp</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Accueil</a></li>
+					<li><a href="#">Auteur</a></li>
+					<li><a href="#">Sciences</a></li>
+					<li><a href="#">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav> 
+
+	<img src="/dist/img/gulp.png" alt="gulp" width="100%">
+
+	<div class="container">
+
+		<h2><em>Gulp</em>, c'est quoi au juste ?</h2>
+
+		<p><em>Gulp</em> est un <em>task manager</em>, autrement dit un gestionnaire de tâche. Son but est de vous faciliter la vie en automatisant des tâches récurrentes lors de vos développement web : 
+		<ul>
+			<li>Validation, compilation, concaténation et minification des fichiers <em>scss/css</em>;</li>
+			<li>Validation, compilation, concaténation et <em>uglification</em> de vos fichiers <em>javascript</em></li>
+			<li>Rafraichissement du navigateur en temps réel à chaque modification (si, si, c'est vrai, trop bien non ?)</li>
+		</ul>
+		</p>	
+
+		<h2>Installer <em>Gulp</em></h2>
+
+		<p>Pour installer <em>Gulp</em>, il faut au préalable avoir déjà installer <em>Node.js</em> et son gestionnaire de paquet <em>npm</em>. Pour ceux qui ne l'auraient pas encore fait, je vous renvoie à la <a href="https://nodejs.org/">documentation attitrée</a>.</p>
+
+		<p>Tout d'abord il faut installer <em>Gulp</em> d'une manière globale sur votre systeme. Pour ce faire, ouvrez votre beau terminal et tapez ceci :
+		<pre class="line-numbers"><code class="language-bash">npm install gulp -g</code></pre>
+		</p>
+
+		<p>A présent, vous pouvez utiliser <em>gulp</em> et sa ligne de commande dans vos projets.</p>
+
+		<p>Maintenant, rendez vous dans le dossier qui contient votre projet web. Si celui-ci est un projet <em>node</em>, vous possédez déjà un fichier <code>package.json</code>. Si ce n'est pas le cas, vous pouvez créer ce fichier en tapant la commande :
+		<pre class="line-numbers"><code class="language-bash">npm init</code></pre>
+		</p>
+
+		<p>Ce fichier contient une section <em>devDependencies</em> qui répertorie tous les plugins que le projet utilise en dépendance.</p>
+
+		<p>A la racine de votre projet, tapez la commande suivante pour ajouter <em>Gulp</em> dans les dépendance de votre projet :
+		<pre class="line-numbers"><code class="language-bash">npm install gulp --save-dev</code></pre>
+		</p>
+		
+		<p><code>--save-dev</code> signifie que vous ajoutez ce module comme dépendance de votre projet.
+		</p>
+
+		<p>Jettez donc un oeil à votre fichier <code>package.json</code>, celui-ci contient maintenant <em>Gulp</em> dans ses dépendances.</p>
+
+		<p>Par ailleurs, s'il n'existait pas déja, un dossier <code>node_modules</code> doit être apparu. Ce dossier contient toutes les modules nécessaires au fonctionnement du projet. En l'occurence, il contient maintenant un sous-dossier <em>Gulp</em>.</p>
+
+		<h2>Utiliser <em>Gulp</em></h2>
+
+		<p><em>Gulp</em> a besoin d'un fichier lui expliquant les tâches qu'il doit effectuer pour fonctionner. A la racine de votre projet, créez un fichier <code>gulpfile.js</code>.</p>
+
+		<p>Ouvrez votre fichier <code>gulpfile.js</code> et écrivez-y ce code :
+			<pre class="line-numbers">
+				<code class="language-javascript">
+			
+					var gulp = require('gulp');
+
+					gulp.task('default', function() {
+	  					// Ne fait absolument rien mais c'est pour l'exemple!
+				});
+				</code>
+			</pre>
+		</p>
+
+	</div>
+
+	<script src="/dist/js/app.min.js"></script>
+
+</body>
+
+</html>

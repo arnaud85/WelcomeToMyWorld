@@ -60,21 +60,22 @@ gulp.task('watch', function () {
         	baseDir: roots.base
         },
 
-        browser: ["google chrome", "firefox"]
+        // browser: ["google chrome", "firefox"]
+        browser: ["google chrome"]
 
     });
 
     gulp.watch(devFolder.sass + "*.scss", ['style']);
     gulp.watch(devFolder.js + "*.js", ['scripts']);
     gulp.watch(devFolder.img+"*", ['images']);
-    gulp.watch(roots.base + "*.html").on("change", browserSync.reload);
+    gulp.watch(roots.base + "**/*.html").on("change", browserSync.reload);
 
 });
 
 // STYLE
 gulp.task('style', function() {
     
-    return gulp.src([devFolder.sass + 'bootstrap.css', devFolder.sass + "*.scss"])
+    return gulp.src([devFolder.sass + 'bootstrap.css', devFolder.sass + 'prism.css', devFolder.sass + "*.scss"])
         .pipe(plumber({
             
             errorHandler: onError
@@ -92,7 +93,7 @@ gulp.task('style', function() {
 // SCRIPTS
 gulp.task('scripts', function() {
 
-    return gulp.src([devFolder.js+'jquery-2.1.4.js', devFolder.js+'bootstrap.js', devFolder.js+'app.js'])
+    return gulp.src([devFolder.js+'jquery-2.1.4.js', devFolder.js+'bootstrap.js', devFolder.js+'prism.js', devFolder.js+'app.js'])
         .pipe(plumber())
         .on('error', notify.onError("Error: <%= error.message %>"))
         .pipe(concat('app.js'))

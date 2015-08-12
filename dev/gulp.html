@@ -78,18 +78,221 @@
 
 		<p><em>Gulp</em> a besoin d'un fichier lui expliquant les tâches qu'il doit effectuer pour fonctionner. A la racine de votre projet, créez un fichier <code>gulpfile.js</code>.</p>
 
-		<p>Ouvrez votre fichier <code>gulpfile.js</code> et écrivez-y ce code :
-			<pre class="line-numbers">
-				<code class="language-javascript">
-			
-					var gulp = require('gulp');
+		<p>Ouvrez donc ce fichier et écrivez-y ce code :
+			<pre class="line-numbers"><code class="language-javascript">var gulp = require('gulp');
 
-					gulp.task('default', function() {
-	  					// Ne fait absolument rien mais c'est pour l'exemple!
-				});
-				</code>
-			</pre>
+gulp.task('default', function() {
+  	// Ne fait absolument rien mais c'est pour l'exemple!
+});</code></pre>
 		</p>
+
+		<p>Qu'avons nous fait ici ? A la première ligne, nous chargeons le module <em>node.js</em> nécessaire à l'utilisation de <em>Gulp</em> et nous le stockons dans une variable :
+		<pre class="line-numbers"><code class="language-javascript">var gulp = require('gulp');</code></pre></p>
+
+		<p>Ensuite, nous demandons à <em>Gulp</em> de créer une nouvelle tâche (<code>gulp.task</code>) que nous appelons <code>'default'</code> (tâche par défaut!); cette tâche ne faisant absolument rien par ailleurs (<code>function(){}</code>): 
+		<pre class="line-numbers"><code class="language-javascript">gulp.task('default', function() {
+	// Ne fait absolument rien mais c'est pour l'exemple!
+});</code></pre></p>
+
+		<p>Vous l'aurez compris, <em>Gulp</em> fonctionne ainsi : nous créeons un certain nombre de tâche qui vont s'exécuter automatiquement ce qui va grandement favoriser l'efficacité du developpement.</p>
+
+		<p>Par ailleurs, la grande force de <em>Gulp</em> est que celui-ci est fondé sur un système de <em>stream</em> c'est-à-dire qu'il n'y a pas d'écriture dans des fichiers intermédiaires (comme avec <em>Grunt</em>, un autre gestionnaire de tâche, par exemple) ce qui va fortement augmenter la rapidité des processus.</p>
+
+		<p>Le schéma sera toujours plus ou moins le même : <ol>
+			<li>Si besoin est, on installe le module qui va nous aider à exécuter notre tâche comme dépendance de notre projet (il y a toujours un module qui va correspondre à nos voeux!)</li>
+			<li>On charge (<code>require</code>) ce module dans le <code>gulpfile.js</code></li>
+			<li>On crée une nouvelle tâche <code>gulp.task</code> que l'on nomme comme on veut à laquelle nous assignons une fonction qui se chargera de bosser pour nous</li>
+			<li>Dans cette fonction, on prend des fichiers/dossiers sources qui vont représenter un flux sur lequel on va travailler</li>
+			<li>On va ensuite créer un tunnel (un <code>pipe</code>) par lequel on fera passer notre flux pour pouvoir lui faire subir diverses transformations.</li>
+			<li>A la fin on récupère le flux et on l'envoie dans un dossier final où nous stockerons donc les fichiers modifiés.</li>
+		</ol></p>
+
+		<p>Ce système de <code>pipe</code> est vraiment la grande force de <em>Gulp</em> et permet de manipuler non pas des fichiers mais des flux de données. Ainsi, la compréhension du code est immédiate et la rapidité est au rendez-vous !</p>
+
+		<h2>Automatisons nos tâches !</h2>
+
+		<p>L'architecture de notre projet web sera la suivante :
+			<ul>
+				<li>Un dossier <code>dev</code> qui nous contiendra le projet en cours de développement</li>
+				<li>Un dossier <code>dist</code> qui contiendra le projet à l'état final pour la distribution</li>
+				<li>A l'intérieur du dossier <code>dev</code>, nous aurons les dossiers <code>sass</code>, <code>js</code> et <code>img</code> qui abriteront respectivement les fichiers <em>scss</em>, <em>javascript</em> et les images du projet</li>
+				<li>De même, à l'intérieur de notre dossier <code>dist</code>, nous aurons les dossiers <code>css</code>, <code>js</code> et <code>img</code> qui abriteront donc respectivement les fichiers <em>css</em>, <em>javascript</em> et les images du projet mais cette fois-ci à l'état de distribution : concaténés et compressés</li>
+			</ul>
+		</p>
+
+		<p>Nous allons donc créer les tâches suivantes : 
+			<ul>
+				<li>Une tâche <code>"style"</code> pour les <em>scss/css</em></li>
+				<li>Une tâche <code>"scripts"</code> pour les <em>js</em></li>
+				<li>Une tâche <code>"images"</code> pour ... les images pardi !</li>
+			</ul>
+		</p>
+
+		<p>A l'attaque !</p>
+
+		<h3>La tâche <em>style</em></h3>
+
+		<p>Pour commencer nous aurons besoins des modules suivants : 
+			<ul>
+				<li><code>gulp-sass</code> : compilation des fichiers <em>scss</em> en <em>css</em></li>
+				<li><code>gulp-autoprefixer</code> : ajout automatique du <em>css</em> pour les différents moteurs <em>webkit</em>, <em>moz</em> etc ...</li>
+				<li><code>gulp-concat</code> : concaténation des fichiers de style pour n'avoir qu'un seul et unique fichier en phase de distribution</li>
+				<li><code>gulp-minify-css</code> : compression des fichiers <em>css</em></li>
+			</ul>
+		</p>
+
+		<p>Il faut donc les installer comme dépendance de notre projet web :
+		<pre class="line-numbers"><code class="language-bash">npm install gulp-sass gulp-autoprefixer gulp-concat gulp-minify-css --save-dev</code></pre>
+		</p>	
+
+		<p>A présent chargeons ces modules dans notre fichier <code>gulpfile.js</code> :</p>
+
+		<p><pre class="line-numbers"><code class="language-javascript">var gulp = require('gulp');
+var sass = require('gulp-sass');
+var autoprefixer = require('gulp-autoprefixer');
+var concat = require('gulp-concat');
+var minifycss = require('gulp-minify-css');</code></pre></p>
+		<p>Ensuite, nous créons notre tâche <code>"style"</code>. Celle-ci contient donc une fonction qui :
+		<ol>
+			<li>Prend comme source tous les fichiers contenus dans notre dossier <code>dev/sass/</code> et en fait un flux de données</li>
+			<li><code>pipe</code> ce flux pour les modifier une première fois : compilation de ces fichiers en fichiers au format <em>css</em></li>
+			<li><code>pipe</code> ce flux une seconde fois pour ajouter automatiquement les préfixes pou les différents moteurs web</li>
+			<li><code>pipe</code> encore ce flux pour agréger les différents fichier en seul et unique</li>
+			<li><code>pipe</code> encore pour une dernière modification : compression des fichiers</li>
+			<li>Enfin, on redirige ce flux de données dans le dossier final, c'est-à-dire le dossier <code>/dist/css/</code></li>
+		</ol>
+		</p>
+
+		<p>C'est aussi simple que ça ! Le code correspondant est :</p>
+
+		<p><pre class="line-numbers"><code class="language-javascript">gulp.task('style', function() {
+		return gulp.src("/dev/sass/*")
+		.pipe(sass())
+		.pipe(concat('style.css'))
+		.pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+		.pipe(minifycss())
+		.pipe(gulp.dest("/dist/css/"))
+	});</code></pre></p>
+
+		<p>Pour lancer notre tâche, il faut tout simplement taper :
+		<pre class="line-numbers"><code class="language-bash">gulp style</code></pre>
+		</p>
+
+		<h3>La tâche <em>scripts</em></h3>
+
+		<p>A présent, occupons nous des <em>js</em>. Ici, notre tâche sera vraiment simple puisque nous nous occuperons seulement de concaténer ces fichiers et de les compresser par la suite. Go !</p>
+
+		<p>On installe les modules correspondant en tant que dépendance de notre projet. Nous réutilisons le modue de concaténation donc nous n'avons qu'un seul module à installer au final : le module <code>gulp-uglify</code>qui se charge de compresser (<em>to uglify</em> en anglais signifie "rendre laid" !) :
+		<pre class="line-numbers"><code class="language-bash">npm install gulp-uglify --save-dev</code></pre>
+		</p>
+
+		<p>Construisons maintenant notre tâche, toujours selon le même modèle :</p>
+
+		<p><pre class="line-numbers"><code class="language-javascript">var uglify = require('gulp-uglify');
+
+	gulp.task('scripts', function() {
+		return gulp.src("/dev/js/*")
+		.pipe(concat('app.js.pipe(uglify())
+		.pipe(gulp.dest("/dist/js/"))
+	});</code></pre></p>
+
+		<p>Pour lancer notre tâche :
+		<pre class="line-numbers"><code class="language-bash">gulp scripts</code></pre>
+		</p>
+
+		<p>C'est réglé pour les <em>js</em> !</p>
+
+		<h3>La tâche <em>images</em></h3>
+
+		<p>Allons-y et installons le module responsables de la compression des images. Ajoutons également un module qui se chagera de gérer le <em>cache</em> c'est-à-dire qui ne re-compressera que les images qui ont changées ou qui sont nouvelles:
+		<pre class="line-numbers"><code class="language-bash">npm install gulp-imagemin gulp-cache --save-dev</code></pre>
+		</p>
+
+		<p>Et c'est parti pour les images :</p>
+
+		<p><pre class="line-numbers"><code class="language-javascript">var imagemin = require('gulp-imagemin');
+	var cache = require('gulp-cache');
+
+	gulp.task('images', function() {
+		return gulp.src("/dev/img/*")
+		.pipe(cache(imagemin({ optimizationLevel: 5, progressive: true, interlaced: true })))
+		.pipe(gulp.dest("/dist/img/"))
+	});</code></pre></p>
+
+		<p>Comme d'habitude (comme dirait Claude), pour lancer notre tâche :
+		<pre class="line-numbers"><code class="language-bash">gulp images</code></pre>
+		</p>
+
+		<p>Et voilà, c'est fini pour les tâches de base. On a survécu. C'était pas si dur en fin de compte !</p>
+
+		<h3>Lancer automatiquement nos tâches</h3>
+
+		<p>Maintenant que nous avons créé nos tâches, on se dit que ça serait vraiment génial si ces tâches étaient effectuées automatiquement dès lors que le projet évolue. Par exemple, lorsque l'on modifie un fichier <em>scss</em>, on aimerait bien que toute la chaine de traitement se lance automatiquement sans le demander explicitement a <em>Gulp</em>. Et bien chers amis je vous annonce que les petits malins de chez <em>Gulp</em> ont pensés à tout puisqu'ils ont inclus de base une fonction pour surveiller tout ce bazar! Il suffit de taper <code>gulp.watch</code> et le système s'arrête pour écouter les changements. Dès qu'il en détecte un, il se charge de lancer la tâche qu'on lui aura prédéfini pour cette situation.</p>
+
+		<p>Il n'a donc ici pas de module supplémentaire à charger. Nous définissons notre tâche que l'on appellera d'une manière très originale <code>"watch"</code> et nous lui dirons de regarder si des fichiers <em>scss</em>, <em>js</em> ou des images on été modfiés/ajoutés. Dans cas, nous lui demandons de lancer tout seul comme un grand les tâches que nous avons prédéfinies par ailleurs c'est-à-dire, respectivement, <code>"style"</code>, <code>"scripts"</code> et <code>"images"</code>. Malin, n'est-ce pas ?</p>
+
+		<p><pre class="line-numbers"><code class="language-javascript">gulp.task('watch', function() {
+	gulp.watch("/dev/sass/*", ['style']);
+    gulp.watch(/dev/js/*, ['scripts']);
+    gulp.watch(/dev/img/*, ['images']);
+});</code></pre></p>
+
+		<h3>Rafraîchir automatiquement la page web</h3>
+
+		<p>Et là arrive le clou du spctacle. La cerise sur le gâteau. Le point sur le i. La possibilité de rafraîchir automatiquement la page web dès lors que l'on opérera un changement sur un fichier lors du développement. Pas mal, hein ?</p>
+
+		<p>Installons donc le module adequat :
+		<pre class="line-numbers"><code class="language-bash">npm install browser-sync --save-dev</code></pre>	
+		</p>
+
+		<p>Dans la tâche <code>"watch"</code>, nous ajoutons alors ce morceau de code :</p>
+
+		<p><pre class="line-numbers"><code class="language-javascript">var browserSync = require('browser-sync').create();
+
+	gulp.task('watch', function () {
+
+		browserSync.init({ 
+	        server: {	
+	        	baseDir: "./" // Racine du projet
+	        },
+
+	        browser: ["google chrome", "firefox"] // Navigateur à synchroniser
+	    });
+
+		gulp.watch("/dev/sass/*", ['style']);
+	    gulp.watch(/dev/js/*, ['scripts']);
+	    gulp.watch(/dev/img/*, ['images']);
+	});</code></pre></p>
+
+		<p>Nous allons également rajouter une ligne supplémentaires à la fin de notre série de <code>pipe</code> dans trois tâches <code>"style"</code>, <code>"scripts"</code> et <code>"images"</code> :
+		<p><pre class="line-numbers"><code class="language-javascript">.pipe(browserSync.stream())</code></pre></p>
+
+		<p>Maintenant, à chaque fois que l'on modifiera et sauvegardera un fichier en phase de dev, le navigateur se mettra à jour en temps réel. Fini les appuis répétitifs (à tendance névrotique sur les touches <code>F5</code>/<code>ctrl+R</code>.</p>
+
+		<h3>Un système de notification</h3>
+
+		<p>Si l'on désire recevoir une alerte sur le navigateur à chaque fois que des tâches sont complétées, nous pouvons aisément le faire. Installons le module <code>gulp-notify</code> comme dépendance de notre projet :
+		<pre class="line-numbers"><code class="language-bash">npm install gulp-notify --save-dev</code></pre>
+		</p>
+
+		<p>Je ne vais rien vous apprendre, il faut également le charger :
+		<pre class="line-numbers"><code class="language-javascript">var notify = require('gulp-notify');</code></pre>
+		</p>
+
+		<p>Par exemple, à chaque fois que nous modifierons un fichier <em>scss</em>, <em>Gulp</em> lancera automatiquement la tâche <code>"style"</code> et le signalera par un message d'alerte sur l'écran du navigateur; celui-ci s'étant également rafraîchi automatiquement. Pour ce faire :
+		</p>
+
+		<p><pre class="line-numbers"><code class="language-javascript">gulp.task('style', function() {
+	    
+	    return gulp.src("/dev/sass/*")
+	        .pipe(sass())
+	        .pipe(concat('style.css'))
+	        .pipe(autoprefixer('last 2 version', 'safari 5', 'ie 9', 'opera 12.1', 'ios 6', 'android 4'))
+	        .pipe(minifycss())
+	        .pipe(gulp.dest("/dist/css/"))
+	        .pipe(browserSync.stream())
+	        .pipe(notify({ message: 'Style task complete' }));
+	});</code></pre></p>
 
 	</div>
 

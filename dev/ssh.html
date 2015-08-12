@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Protocole SSH</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Accueil</a></li>
+					<li><a href="#">Auteur</a></li>
+					<li><a href="#">Sciences</a></li>
+					<li><a href="#">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav> 
+
+	<img src="/dist/img/ssh.jpg" alt="ssh" width="100%">
+	
+	<div class="container">
+
+		<h2><em>SSH</em>, c'est quoi encore ce truc ?</h2>
+
+		<p><em>ssh</em> est l'abbréviation de <em>secure shell</em>. Comme son nom l'indique, <em>ssh</em> est un protocle qui permet de se connecter à une machine distante en toute sécurité. Imaginiez que vous puissez vous connecter à votre ordinateur personnel depuis votre lieu de travail, ou mieux, depuis votre splendide résidence secondaire sur la côte basco-landaise ! 
+
+		<p>Ainsi vous pourriez très bien lancer des téléchargements, récupérer des fichiers et tout le toutim sans même bouger vous déplacer, laisser votre ordinateur de compét' tourner pour vous tout seul comme un grand et récupérer le fruit de son labeur (cette phrase est limite immorale quand on y pense ...).</p>
+
+		<p>Et si bientôt on pouvait bosser à la maison avec un petit mojito dans les mains sans même avoir à se déplacer jusqu'au boulot, avouez que ça serait pas mal hein ? Si, si, faites pas semblant.</p>
+		
+		<h2>Et alors, ça marche comment ton truc ?</h2>
+
+		<p>C'est très facile, vous allez le constater vous-même. Qui dit connexion sécurisée, dit <code>login</code> et <code>password</code>. Le <code>login</code> est le nom avec lequel vous êtes reconnu sur la machine distante. Le <code>password</code> est, vous vous en êtes certainement douté, le mot de passe que l'on vous demande pour vous connecter sur votre session. Pour vous, c'est bon, maintenant il nous faut connaitre l'adresse de la machine distante. Et bien, l'adresse d'une machine sur un réseau c'est ... son <code>adresse IP</code> ! Notez qu'il est également possible de définir un nom de domaine pointant sur cette adresse ce qui est pratique pour ne pas avoir à se souvenir de l'<code>IP</code> en permanence. Donc, pour vous connecter à votre machine favorie, tapez la commande suivante dans un terminal :</p>	
+
+		<p><pre class="line-numbers"><code class="language-bash">ssh login@ip</code></pre></p>
+
+		<p>Le terminal vous demande alors votre <code>login</code>/<code>password</code> afin de vous identifier et sécuriser la connexion. Donnez lui ce qu'il vous demande et vous voilà enfin connecté chez vous ! C'est pas beau ça ?</p>
+
+		<h2>Se connecter sans fournir de <em>login</em>/<em>password</em></h2>
+
+		<p>C'est bien beau tout ça mais j'en ai marre de devoir me justifier en permanence pour pouvoir me rendre chez moi ! Et puis, il se peut aussi que vouliez automatiser une tâche et la lancer à distance, par exemple à une heure précise tous les jours. Ce serait tout de même embêtant si celle-ci ne s'exécutait pas parce que vous n'avez pas pu/voulu fournir vos identifiants à chaque fois.</p>
+
+		<p>Et bien la solution existe. Il suffit de faire en sorte que votre profil soit reconnu par la machine distante dès lors que vous êtes connecté sur votre compte en local?. Pour ce faire, il va falloir créer une clé que vous aller envoyer sur la machine distante. Cette clé sera en quelques sortes une assurance que c'est bien vous qui cherchez à vous connecter à la machine distante et pas votre voisin trucmuche qui espionne en cachette tous vos faits et gestes ... Ainsi, dès lors que vous tenterez de vous connecter à la machine distante alors que vous êtes connecté en local sur votre session, la machine distante sera capable de vous reconnaître et de se dire <em>"Ok, ce mec je le connais, je le laisse rentrer"</em>.</p>
+			  	
+		<p>Nous allons en fait générer deux clés :</p>
+		<ul>
+  			<li>Une <code>clé privé</code> : elle reste sur la machine locale représente votre passe droit pour vous connecter à la machine distante</li>
+  			<li>Une <code>clé publique</code> : elle est envoyée sur la machine distante et sert de système de reconnaissance</li>
+  		</ul>
+
+		<p>Pour générer ces deux clés :
+		<pre class="line-numbers"><code class="language-bash">ssh-keygen -t rsa</code></pre>
+		</p>	
+
+		<p>Les deux clés sont alors crées :
+	  		<ul>
+	  			<li>La <code>clé privée</code> : <code>id_rsa</code></li>
+	  			<li>La <code>clé publique</code> : <code>id_rsa.pub</code></li>
+	  		</ul>
+	  	</p>
+
+		<p>Ensuite, nous envoyons la clé sur la machine distante :
+		<pre class="line-numbers"><code class="language-bash">ssh-copy-id -i id_rsa.pub login@ip</code></pre>
+		</p>	
+
+		<p>La clé se place alors dans le dossier <code>/home/nom_utilisateur/.ssh/</code> de la machine distante, dans le dossier <code>Authorized</code>.</p>
+
+		<p>Il suffit maintenant de taper simplement la première commande que nous avons vue pour se connecter automatiquement sans fournir de mot de passe.</p>
+
+	</div>
+
+	<script src="/dist/js/app.min.js"></script>
+
+</body>

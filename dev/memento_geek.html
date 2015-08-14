@@ -32,618 +32,630 @@
     		</div>
   		</div>
 	</nav> 
-	
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>Allez hop un petit memento pour continuer à travailler même quand on a perdu son cerveau on ne sais où la veille mais ça, ça ne nous regarde pas ...</p>
+		</div>
+	</div>
+
 	<div class="container">
 
-		<a href="#ssh" class="btn btn-info active" role="button">ssh</a>
-		<a href="#tar" class="btn btn-info active" role="button">tar</a>
-		<a href="#gzip" class="btn btn-info active" role="button">gzip</a>
-		<a href="#alias" class="btn btn-info active" role="button">alias</a>
-		<a href="#ln" class="btn btn-info active" role="button">ln</a>
-		<a href="#ls" class="btn btn-info active" role="button">ls</a>
-		<a href="#ldd" class="btn btn-info active" role="button">ldd</a>
-		<a href="#head" class="btn btn-info active" role="button">head</a>
-		<a href="#tail" class="btn btn-info active" role="button">tail</a>
-		<a href="#date" class="btn btn-info active" role="button">date</a>
-		<a href="#top" class="btn btn-info active" role="button">top</a>
-		<a href="#free" class="btn btn-info active" role="button">free</a>
-		<a href="#paste" class="btn btn-info active" role="button">paste</a>
-		<a href="#sort" class="btn btn-info active" role="button">sort</a>
-		<a href="#sed" class="btn btn-info active" role="button">sed</a>
-		<a href="#grep" class="btn btn-info active" role="button">grep</a>
-		<a href="#kill" class="btn btn-info active" role="button">kill</a>
-		<a href="#op$" class="btn btn-info active" role="button">$</a>
-		<a href="#screenshot" class="btn btn-info active" role="button">gnome-screenshot</a>
-		<a href="#awk" class="btn btn-info active" role="button">awk</a>
-		<a href="#chmod" class="btn btn-info active" role="button">chmod</a>
-		<a href="#chown" class="btn btn-info active" role="button">chown</a>
-		<a href="#read" class="btn btn-info active" role="button">read</a>
-		<a href="#ncdump" class="btn btn-success active" role="button">ncdump</a>
-		<a href="#sass" class="btn btn-success active" role="button">sass</a>
-		<a href="#git" class="btn btn-success active" role="button">git</a>
-		<a href="#sub" class="btn btn-warning active" role="button">sublime text</a>
+		<div class="row">
+			<div class="col-xs-12 col-sm-8 col-sm-offset-1">
+			
+				<a href="#ssh" class="btn btn-info active" role="button">ssh</a>
+				<a href="#tar" class="btn btn-info active" role="button">tar</a>
+				<a href="#gzip" class="btn btn-info active" role="button">gzip</a>
+				<a href="#alias" class="btn btn-info active" role="button">alias</a>
+				<a href="#ln" class="btn btn-info active" role="button">ln</a>
+				<a href="#ls" class="btn btn-info active" role="button">ls</a>
+				<a href="#ldd" class="btn btn-info active" role="button">ldd</a>
+				<a href="#head" class="btn btn-info active" role="button">head</a>
+				<a href="#tail" class="btn btn-info active" role="button">tail</a>
+				<a href="#date" class="btn btn-info active" role="button">date</a>
+				<a href="#top" class="btn btn-info active" role="button">top</a>
+				<a href="#free" class="btn btn-info active" role="button">free</a>
+				<a href="#paste" class="btn btn-info active" role="button">paste</a>
+				<a href="#sort" class="btn btn-info active" role="button">sort</a>
+				<a href="#sed" class="btn btn-info active" role="button">sed</a>
+				<a href="#grep" class="btn btn-info active" role="button">grep</a>
+				<a href="#kill" class="btn btn-info active" role="button">kill</a>
+				<a href="#op$" class="btn btn-info active" role="button">$</a>
+				<a href="#screenshot" class="btn btn-info active" role="button">gnome-screenshot</a>
+				<a href="#awk" class="btn btn-info active" role="button">awk</a>
+				<a href="#chmod" class="btn btn-info active" role="button">chmod</a>
+				<a href="#chown" class="btn btn-info active" role="button">chown</a>
+				<a href="#read" class="btn btn-info active" role="button">read</a>
+				<a href="#ncdump" class="btn btn-success active" role="button">ncdump</a>
+				<a href="#sass" class="btn btn-success active" role="button">sass</a>
+				<a href="#git" class="btn btn-success active" role="button">git</a>
+				<a href="#sub" class="btn btn-warning active" role="button">sublime text</a>
 
 
-		<h2 id="ssh"><code>ssh</code> : connexion sécurisée à distance</h2>
+				<h2 id="ssh"><code>ssh</code> : connexion sécurisée à distance</h2>
 
-		<table class="table table-bordered table-striped">
-    		<tbody>
-				<tr>
-					<td>Connexion sécurisée avec une machine distante</td>
-					<td><code class="language-bash">ssh login@ip</code></td>
-				</tr>
-				<tr>
-					<td>Connexion sécurisée avec une machine distante et affichage du bureau</td>
-					<td><code class="language-bash">ssh -X login@ip</code></td>
-				</tr>
-				<tr>
-					<td>Exécution d'une commande à distance</td>
-					<td><code class="language-bash">ssh login@ip bash < script</code></td>
-				</tr>
-				<tr>
-					<td>Générer une paire de clé publique/privée</td>
-					<td><code class="language-bash">ssh-keygen -t rsa</code></td>
-				</tr>
-				<tr>
-					<td>Envoyer la clé publique sur l'hôte distant</td>
-					<td><code class="language-bash">ssh-copy-id -i id_rsa.pub login@ip</code></td>
-				</tr>
-    		</tbody>
-  		</table>
+				<table class="table table-bordered table-striped">
+		    		<tbody>
+						<tr>
+							<td>Connexion sécurisée avec une machine distante</td>
+							<td><code class="language-bash">ssh login@ip</code></td>
+						</tr>
+						<tr>
+							<td>Connexion sécurisée avec une machine distante et affichage du bureau</td>
+							<td><code class="language-bash">ssh -X login@ip</code></td>
+						</tr>
+						<tr>
+							<td>Exécution d'une commande à distance</td>
+							<td><code class="language-bash">ssh login@ip bash < script</code></td>
+						</tr>
+						<tr>
+							<td>Générer une paire de clé publique/privée</td>
+							<td><code class="language-bash">ssh-keygen -t rsa</code></td>
+						</tr>
+						<tr>
+							<td>Envoyer la clé publique sur l'hôte distant</td>
+							<td><code class="language-bash">ssh-copy-id -i id_rsa.pub login@ip</code></td>
+						</tr>
+		    		</tbody>
+		  		</table>
 
-  		<h2 id="tar"><code>tar</code> : création/extraction d'une archive</h2>
+		  		<h2 id="tar"><code>tar</code> : création/extraction d'une archive</h2>
 
-		<table class="table table-bordered table-striped">
-    		<tbody>
-				<tr>
-					<td>Créer une archive à partir de fichiers (v : mode verbeux; f : pour spécifier les fichiers)</td>
-					<td><code class="language-bash">tar -cvf nom_archive.tar fichier1 fichier2 ... fichierN</code></td>
-				</tr>
-				<tr>
-					<td>Créer une archive à partir d'un dossier</td>
-					<td><code class="language-bash">tar -cvf nom_archive.tar dossier/</code></td>
-				</tr>
-				<tr>
-					<td>Créer une archive au format tar.gz à partir d'un dossier</td>
-					<td><code class="language-bash">tar -czvf nom_archive.tar.gz dossier/</code></td>
-				</tr>
-				<tr>
-					<td>Créer une archive au format tar.bz2 à partir d'un dossier</td>
-					<td><code class="language-bash">tar -cjvf nom_archive.tar.bz2 dossier/</code></td>
-				</tr>
-				<tr>
-					<td>Extraire une archive au format tar.gz</td>
-					<td><code class="language-bash">tar -xzvf nom_archive.tar.gz</code></td>
-				</tr>
-				<tr>
-					<td>Extraire une archive au format tar.bz2</td>
-					<td><code class="language-bash">tar -xjvf nom_archive.tar.bz2</code></td>
-				</tr>
-				<tr>
-					<td>Lister le contenu d'une archive</td>
-					<td><code class="language-bash">tar -tf nom_archive.tar</code></td>
-				</tr>
-    		</tbody>
-  		</table>
+				<table class="table table-bordered table-striped">
+		    		<tbody>
+						<tr>
+							<td>Créer une archive à partir de fichiers (v : mode verbeux; f : pour spécifier les fichiers)</td>
+							<td><code class="language-bash">tar -cvf nom_archive.tar fichier1 fichier2 ... fichierN</code></td>
+						</tr>
+						<tr>
+							<td>Créer une archive à partir d'un dossier</td>
+							<td><code class="language-bash">tar -cvf nom_archive.tar dossier/</code></td>
+						</tr>
+						<tr>
+							<td>Créer une archive au format tar.gz à partir d'un dossier</td>
+							<td><code class="language-bash">tar -czvf nom_archive.tar.gz dossier/</code></td>
+						</tr>
+						<tr>
+							<td>Créer une archive au format tar.bz2 à partir d'un dossier</td>
+							<td><code class="language-bash">tar -cjvf nom_archive.tar.bz2 dossier/</code></td>
+						</tr>
+						<tr>
+							<td>Extraire une archive au format tar.gz</td>
+							<td><code class="language-bash">tar -xzvf nom_archive.tar.gz</code></td>
+						</tr>
+						<tr>
+							<td>Extraire une archive au format tar.bz2</td>
+							<td><code class="language-bash">tar -xjvf nom_archive.tar.bz2</code></td>
+						</tr>
+						<tr>
+							<td>Lister le contenu d'une archive</td>
+							<td><code class="language-bash">tar -tf nom_archive.tar</code></td>
+						</tr>
+		    		</tbody>
+		  		</table>
 
-  		<h2 id="gzip"><code>gzip</code> : décompresser une archive</h2>
+		  		<h2 id="gzip"><code>gzip</code> : décompresser une archive</h2>
 
-		<table class="table table-bordered table-striped">
-    		<tbody>
-				<tr>
-					<td>Décompresser un fichier <em>.gz</em></td>
-					<td><code class="language-bash">gzip -d fichier.gz</code></td>
-				</tr>
-    		</tbody>
-  		</table>
+				<table class="table table-bordered table-striped">
+		    		<tbody>
+						<tr>
+							<td>Décompresser un fichier <em>.gz</em></td>
+							<td><code class="language-bash">gzip -d fichier.gz</code></td>
+						</tr>
+		    		</tbody>
+		  		</table>
 
-  		<h2 id="alias"><code>alias</code> : créer un alias pour une commande</h2>
+		  		<h2 id="alias"><code>alias</code> : créer un alias pour une commande</h2>
 
-		<table class="table table-bordered table-striped">
-    		<tbody>
-				<tr>
-					<td>Créer un alias</td>
-					<td><code class="language-bash">alias nom_alias='commande'</code></td>
-				</tr>
-    		</tbody>
-  		</table>
+				<table class="table table-bordered table-striped">
+		    		<tbody>
+						<tr>
+							<td>Créer un alias</td>
+							<td><code class="language-bash">alias nom_alias='commande'</code></td>
+						</tr>
+		    		</tbody>
+		  		</table>
 
-  		<h2 id="ln"><code>ln</code> : créer un lien</h2>
+		  		<h2 id="ln"><code>ln</code> : créer un lien</h2>
 
-  		<table class="table table-bordered table-striped">
-    		<tbody>
-				<tr>
-					<td>Créer un lien symbolique</td>
-					<td><code class="language-bash">ln -s nom_du_fichier nom_du_lien</code></td>
-				</tr>
-    		</tbody>
-  		</table>
+		  		<table class="table table-bordered table-striped">
+		    		<tbody>
+						<tr>
+							<td>Créer un lien symbolique</td>
+							<td><code class="language-bash">ln -s nom_du_fichier nom_du_lien</code></td>
+						</tr>
+		    		</tbody>
+		  		</table>
 
-  		<h2 id="ls"><code>ls</code> : lister le contenu d'un dossier</h2>
+		  		<h2 id="ls"><code>ls</code> : lister le contenu d'un dossier</h2>
 
-  		<table class="table table-bordered table-striped">
-    		<tbody>
-				<tr>
-					<td>Lister le contenu d'un dossier</td>
-					<td><code class="language-bash">ls chemin_dossier</code></td>
-				</tr>
-				<tr>
-					<td>Lister le contenu d'un dossier en détail</td>
-					<td><code class="language-bash">ls -l chemin_dossier</code></td>
-				</tr>
-				<tr>
-					<td>Lister le contenu d'un dossier, y compris les dossiers cachés</td>
-					<td><code class="language-bash">ls -a chemin_dossier</code></td>
-				</tr>
-				<tr>
-					<td>Lister le contenu d'un dossier avec la taille des fichiers</td>
-					<td><code class="language-bash">ls -h chemin_dossier</code></td>
-				</tr>
-				<tr>
-					<td>Trier les fichiers par date, du plus récent au plus ancien</td>
-					<td><code class="language-bash">ls -t chemin_dossier</code></td>
-				</tr>
-				<tr>
-					<td>Trier les fichiers par taille décroissante</td>
-					<td><code class="language-bash">ls -S chemin_dossier</code></td>
-				</tr>
-				<tr>
-					<td>Inverser le tri</td>
-					<td><code class="language-bash">ls -r chemin_dossier</code></td>
-				</tr>
-				<tr>
-					<td>Compter le nombre de fichiers présents dans un dossier</td>
-					<td><code class="language-bash">ls -al | wc -l</code></td>
-				</tr>
-				<tr>
-					<td>Compter le nombre de fichiers présents dans un dossier, sans compter "." et ".."</td>
-					<td><code class="language-bash">ls -1 | wc -l</code></td>
-				</tr>
-    		</tbody>
-  		</table>
+		  		<table class="table table-bordered table-striped">
+		    		<tbody>
+						<tr>
+							<td>Lister le contenu d'un dossier</td>
+							<td><code class="language-bash">ls chemin_dossier</code></td>
+						</tr>
+						<tr>
+							<td>Lister le contenu d'un dossier en détail</td>
+							<td><code class="language-bash">ls -l chemin_dossier</code></td>
+						</tr>
+						<tr>
+							<td>Lister le contenu d'un dossier, y compris les dossiers cachés</td>
+							<td><code class="language-bash">ls -a chemin_dossier</code></td>
+						</tr>
+						<tr>
+							<td>Lister le contenu d'un dossier avec la taille des fichiers</td>
+							<td><code class="language-bash">ls -h chemin_dossier</code></td>
+						</tr>
+						<tr>
+							<td>Trier les fichiers par date, du plus récent au plus ancien</td>
+							<td><code class="language-bash">ls -t chemin_dossier</code></td>
+						</tr>
+						<tr>
+							<td>Trier les fichiers par taille décroissante</td>
+							<td><code class="language-bash">ls -S chemin_dossier</code></td>
+						</tr>
+						<tr>
+							<td>Inverser le tri</td>
+							<td><code class="language-bash">ls -r chemin_dossier</code></td>
+						</tr>
+						<tr>
+							<td>Compter le nombre de fichiers présents dans un dossier</td>
+							<td><code class="language-bash">ls -al | wc -l</code></td>
+						</tr>
+						<tr>
+							<td>Compter le nombre de fichiers présents dans un dossier, sans compter "." et ".."</td>
+							<td><code class="language-bash">ls -1 | wc -l</code></td>
+						</tr>
+		    		</tbody>
+		  		</table>
 
-  		<h2 id="ldd"><code>ldd</code> : lister les dépendances</h2>
+		  		<h2 id="ldd"><code>ldd</code> : lister les dépendances</h2>
 
-  		<table class="table table-bordered table-striped" id="">
-			<tr>
-			  <td>Lister les dépendances d'un exécutable</td>
-			  <td><code class="language-bash">ldd -v nom_executable</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped" id="">
+					<tr>
+					  <td>Lister les dépendances d'un exécutable</td>
+					  <td><code class="language-bash">ldd -v nom_executable</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="head"><code>head</code> : voir le début d'un fichier</h2>
+				<h2 id="head"><code>head</code> : voir le début d'un fichier</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Voir les premières lignes d'un fichier</td>
-			  <td><code class="language-bash">head fichier.txt</code></td>		
-			</tr>
-			<tr>
-			  <td>Supprimer les (n) premières lignes d'un fichier (en gardant un fichier bak)	</td>
-			  <td><code class="language-bash">head -(n) fichier.txt > nouveau_fichier.txt</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Voir les premières lignes d'un fichier</td>
+					  <td><code class="language-bash">head fichier.txt</code></td>		
+					</tr>
+					<tr>
+					  <td>Supprimer les (n) premières lignes d'un fichier (en gardant un fichier bak)	</td>
+					  <td><code class="language-bash">head -(n) fichier.txt > nouveau_fichier.txt</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="tail"><code>tail</code> : voir la fin d'un fichier</h2>
+				<h2 id="tail"><code>tail</code> : voir la fin d'un fichier</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Voir les dernières lignes d'un fichier</td>
-			  <td><code class="language-bash">tail fichier.txt</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Voir les dernières lignes d'un fichier</td>
+					  <td><code class="language-bash">tail fichier.txt</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="date"><code>date</code> : manipuler des dates</h2>
+				<h2 id="date"><code>date</code> : manipuler des dates</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Afficher la date</td>
-			  <td><code class="language-bash">date</code></td>		
-			</tr>
-			<tr>
-			  <td>Afficher la date au format temps universelle UTC</td>
-			  <td><code class="language-bash">date -u</code></td>		
-			</tr>
-			<tr>
-			  <td>Afficher la date sous forme de timestamp (nombres de secondes écoulées depuis le 01/01/1970 à 00:00:00)</td>
-			  <td><code class="language-bash">date +%s</code></td>		
-			</tr>
-			<tr>
-			  <td>Afficher la date d'une façon structurée</td>
-			  <td><code class="language-bash">date -u +"%Y-%m-%d %H:%M:%S UTC"</code></td>		
-			</tr>
-			<tr>
-			  <td>Afficher une date spécifique sous forme de timestamp</td>
-			  <td><code class="language-bash">date -d "yyyy-mm-dd HH:MM:SS" +%s</code></td>		
-			</tr>
-			<tr>
-			  <td>Convertir un timestamp en date</td>
-			  <td><code class="language-bash">date -d @timestamp</code></td>		
-			</tr>
-			<tr>
-			  <td>Convertir un timestamp en date sous le format "YYYY-MM-DD HH:mm:ss"</td>
-			  <td><code class="language-bash">date -d @timestamp '+%Y-%m-%d %H:%M:%S'</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Afficher la date</td>
+					  <td><code class="language-bash">date</code></td>		
+					</tr>
+					<tr>
+					  <td>Afficher la date au format temps universelle UTC</td>
+					  <td><code class="language-bash">date -u</code></td>		
+					</tr>
+					<tr>
+					  <td>Afficher la date sous forme de timestamp (nombres de secondes écoulées depuis le 01/01/1970 à 00:00:00)</td>
+					  <td><code class="language-bash">date +%s</code></td>		
+					</tr>
+					<tr>
+					  <td>Afficher la date d'une façon structurée</td>
+					  <td><code class="language-bash">date -u +"%Y-%m-%d %H:%M:%S UTC"</code></td>		
+					</tr>
+					<tr>
+					  <td>Afficher une date spécifique sous forme de timestamp</td>
+					  <td><code class="language-bash">date -d "yyyy-mm-dd HH:MM:SS" +%s</code></td>		
+					</tr>
+					<tr>
+					  <td>Convertir un timestamp en date</td>
+					  <td><code class="language-bash">date -d @timestamp</code></td>		
+					</tr>
+					<tr>
+					  <td>Convertir un timestamp en date sous le format "YYYY-MM-DD HH:mm:ss"</td>
+					  <td><code class="language-bash">date -d @timestamp '+%Y-%m-%d %H:%M:%S'</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="top"><code>top</code> : afficher les processus en cours</h2>
+				<h2 id="top"><code>top</code> : afficher les processus en cours</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Affiche les processus actuellement en cours</td>
-			  <td><code class="language-bash">top</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Affiche les processus actuellement en cours</td>
+					  <td><code class="language-bash">top</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="free"><code>free</code> : afficher la mémoire</h2>
+				<h2 id="free"><code>free</code> : afficher la mémoire</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Affiche la mémoire disponible</td>
-			  <td><code class="language-bash">free</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Affiche la mémoire disponible</td>
+					  <td><code class="language-bash">free</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="paste"><code>paste</code> : copier un fichier dans un autre</h2>
+				<h2 id="paste"><code>paste</code> : copier un fichier dans un autre</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Créer un fichier contenant les colonnes d'un fichier suivi des colonnes d'un second</td>
-			  <td><code class="language-bash">paste fichier_1.txt fichier_2.txt >> fichier_3.txt</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Créer un fichier contenant les colonnes d'un fichier suivi des colonnes d'un second</td>
+					  <td><code class="language-bash">paste fichier_1.txt fichier_2.txt >> fichier_3.txt</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="sort"><code>sort</code> : trier un fichier suivant une clé</h2>
+				<h2 id="sort"><code>sort</code> : trier un fichier suivant une clé</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Trier un fichier texte suivant une clé (par rapport à une colonne repérée par son numéro : 1, 2, etc ...)</td>
-			  <td><code class="language-bash">sort -k(clé) fichier.txt</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Trier un fichier texte suivant une clé (par rapport à une colonne repérée par son numéro : 1, 2, etc ...)</td>
+					  <td><code class="language-bash">sort -k(clé) fichier.txt</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="sed"><code>sed</code> : substituer un mot par un autre</h2>
+				<h2 id="sed"><code>sed</code> : substituer un mot par un autre</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Substituer un mot par un autre dans un fichier</td>
-			  <td><code class="language-bash">sed -i -r 's/mot_a_substituer/nouveau_mot/g' nom_du_fichier</code></td>		
-			</tr>
-			<tr>
-			  <td>Supprimer les (n) dernieres lignes d'un fichier (en gardant un fichier bak)</td>
-			  <td><code class="language-bash">sed -i.bak "1,(n)d" fichier.txt</code></td>	
-			</tr>
-			<tr>
-			  <td>Supprimer toutes lignes d'un fichier contenant le mot "(mot)"</td>
-			  <td><code class="language-bash">sed -i '/(mot)/d' fichier.txt</code></td>	
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Substituer un mot par un autre dans un fichier</td>
+					  <td><code class="language-bash">sed -i -r 's/mot_a_substituer/nouveau_mot/g' nom_du_fichier</code></td>		
+					</tr>
+					<tr>
+					  <td>Supprimer les (n) dernieres lignes d'un fichier (en gardant un fichier bak)</td>
+					  <td><code class="language-bash">sed -i.bak "1,(n)d" fichier.txt</code></td>	
+					</tr>
+					<tr>
+					  <td>Supprimer toutes lignes d'un fichier contenant le mot "(mot)"</td>
+					  <td><code class="language-bash">sed -i '/(mot)/d' fichier.txt</code></td>	
+					</tr>
+				</table>
 
-		<h2 id="grep"><code>grep</code> : capturer une chaine de caractères</h2>
+				<h2 id="grep"><code>grep</code> : capturer une chaine de caractères</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Afficher les lignes (et le numéro de ligne) contenant le mot "(mot)" dans un fichier</td>
-			  <td><code class="language-bash">grep -n (mot) fichier.txt</code></td>		
-			</tr>
-			<tr>
-			  <td>Compter le nombre de lignes contenant le mot "(mot)" dans un fichier</td>
-			  <td><code class="language-bash">grep -n (mot) fichier.txt | wc -l</code></td>	
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Afficher les lignes (et le numéro de ligne) contenant le mot "(mot)" dans un fichier</td>
+					  <td><code class="language-bash">grep -n (mot) fichier.txt</code></td>		
+					</tr>
+					<tr>
+					  <td>Compter le nombre de lignes contenant le mot "(mot)" dans un fichier</td>
+					  <td><code class="language-bash">grep -n (mot) fichier.txt | wc -l</code></td>	
+					</tr>
+				</table>
 
-		<h2 id="kill"><code>kill</code> : tuer un processus</h2>
+				<h2 id="kill"><code>kill</code> : tuer un processus</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Tuer un processus</td>
-			  <td><code class="language-bash">kill pid_processus</code></td>		
-			</tr>
-			<tr>
-			  <td>Tuer violemment un processus (forcer)</td>
-			  <td><code class="language-bash">kill 9 pid_processus</code></td>	
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Tuer un processus</td>
+					  <td><code class="language-bash">kill pid_processus</code></td>		
+					</tr>
+					<tr>
+					  <td>Tuer violemment un processus (forcer)</td>
+					  <td><code class="language-bash">kill 9 pid_processus</code></td>	
+					</tr>
+				</table>
 
-		<h2 id="op$"><code>Opérateur $</code> : interpréter une commande</h2>
+				<h2 id="op$"><code>Opérateur $</code> : interpréter une commande</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Interpréter une commande</td>
-			  <td><code class="language-bash">$( commande )</code></td>		
-			</tr>
-			<tr>
-			  <td>Interpréter un calcul arithmétique</td>
-			  <td><code class="language-bash">$(( calcul ))</code></td>	
-			</tr>
-			<tr>
-			  <td>Prendre une sous-chaine d'une chaine contenue dans une variable</td>
-			  <td><code class="language-bash">${variable:debut:nombre_de_caractères}</code></td>	
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Interpréter une commande</td>
+					  <td><code class="language-bash">$( commande )</code></td>		
+					</tr>
+					<tr>
+					  <td>Interpréter un calcul arithmétique</td>
+					  <td><code class="language-bash">$(( calcul ))</code></td>	
+					</tr>
+					<tr>
+					  <td>Prendre une sous-chaine d'une chaine contenue dans une variable</td>
+					  <td><code class="language-bash">${variable:debut:nombre_de_caractères}</code></td>	
+					</tr>
+				</table>
 
-		<h2 id="screenshot"><code>gnome-screenshot</code> : faire une capture d'écran avec le bureau Gnome</h2>
+				<h2 id="screenshot"><code>gnome-screenshot</code> : faire une capture d'écran avec le bureau Gnome</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Faire une capture d'écran</td>
-			  <td><code class="language-bash">gnome-screenshot</code></td>		
-			</tr>
-			<tr>
-			  <td>Prendre une capture de la fenêtre qui a le focus</td>
-			  <td><code class="language-bash">gnome-screenshot --window</code></td>	
-			</tr>
-			<tr>
-			  <td>Prendre une capture de la fenêtre ou de l'écran, après le délai renseigné en secondes</td>
-			  <td><code class="language-bash">gnome-screenshot --delay=10</code></td>	
-			</tr>
-			<tr>
-			  <td>Prendre une capture qui comprend les bords de l'écran</td>
-			  <td><code class="language-bash">gnome-screenshot --include-border</code></td>	
-			</tr>
-			<tr>
-			  <td>Prendre une capture et ajouter un effet ombré tout autour</td>
-			  <td><code class="language-bash">gnome-screenshot --border-effect=shadow</code></td>	
-			</tr>
-			<tr>
-			  <td>Prendre une capture de la fenêtre ou de l'écran, et entourer la capture d'un cadre</td>
-			  <td><code class="language-bash">gnome-screenshot --border-effect=border</code></td>	
-			</tr>
-			<tr>
-			  <td>Prendre une capture de la zone que vous délimiterez avec la souris</td>
-			  <td><code class="language-bash">gnome-screenshot --area</code></td>	
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Faire une capture d'écran</td>
+					  <td><code class="language-bash">gnome-screenshot</code></td>		
+					</tr>
+					<tr>
+					  <td>Prendre une capture de la fenêtre qui a le focus</td>
+					  <td><code class="language-bash">gnome-screenshot --window</code></td>	
+					</tr>
+					<tr>
+					  <td>Prendre une capture de la fenêtre ou de l'écran, après le délai renseigné en secondes</td>
+					  <td><code class="language-bash">gnome-screenshot --delay=10</code></td>	
+					</tr>
+					<tr>
+					  <td>Prendre une capture qui comprend les bords de l'écran</td>
+					  <td><code class="language-bash">gnome-screenshot --include-border</code></td>	
+					</tr>
+					<tr>
+					  <td>Prendre une capture et ajouter un effet ombré tout autour</td>
+					  <td><code class="language-bash">gnome-screenshot --border-effect=shadow</code></td>	
+					</tr>
+					<tr>
+					  <td>Prendre une capture de la fenêtre ou de l'écran, et entourer la capture d'un cadre</td>
+					  <td><code class="language-bash">gnome-screenshot --border-effect=border</code></td>	
+					</tr>
+					<tr>
+					  <td>Prendre une capture de la zone que vous délimiterez avec la souris</td>
+					  <td><code class="language-bash">gnome-screenshot --area</code></td>	
+					</tr>
+				</table>
 
-		<h2 id="awk"><code>awk</code> : visualiser le contenu d'un fichier NetCDF</h2>
+				<h2 id="awk"><code>awk</code> : visualiser le contenu d'un fichier NetCDF</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Afficher la colonne n° X d'un fichier texte ayant comme séparateur de champ FS (par défaut : " ")</td>
-			  <td><code class="language-bash">awk -F "FS" '{ print $X }' fichier.txt</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Afficher la colonne n° X d'un fichier texte ayant comme séparateur de champ FS (par défaut : " ")</td>
+					  <td><code class="language-bash">awk -F "FS" '{ print $X }' fichier.txt</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="chmod"><code>chmod</code> : changer les droits sur un fichier</h2>
+				<h2 id="chmod"><code>chmod</code> : changer les droits sur un fichier</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Ajouter des droits à une entité</td>
-			  <td><code class="language-bash">chmod entité+droits fichier</code></td>		
-			</tr>
-			<tr>
-			  <td>Enlever des droits à une entité</td>
-			  <td><code class="language-bash">chmod entité-droits fichier</code></td>		
-			</tr>
-			<tr>
-			  <td>Ajouter (enlever) des droits à une entité d'une façon récursive sur les tous les fichiers du dossier</td>
-			  <td><code class="language-bash">chmod -R entité+(-)droits dossier</code></td>		
-			</tr>
-			<tr>
-			  <td>a (all)</td>
-			  <td><code class="language-bash">Toutes les entités</code></td>		
-			</tr>
-			<tr>
-			  <td>u (user)</td>
-			  <td><code class="language-bash">Le propriétaire du fichier</code></td>		
-			</tr>
-			<tr>
-			  <td>g (group)</td>
-			  <td><code class="language-bash">Le groupe auquel appartient le fichier</code></td>
-			</tr>
-			<tr>
-			  <td>o (others)</td>
-			  <td><code class="language-bash">Les autres personnes (autres que le propriétaire et le groupe)</code></td>
-			</tr>
-			<tr>
-			  <td>r (reading)</td>
-			  <td><code class="language-bash">Droit de lecture</code></td>
-			</tr>
-			<tr>
-			  <td>w (writing)</td>
-			  <td><code class="language-bash">Droit d'écriture</code></td>
-			</tr>
-			<tr>
-			  <td>x (execute)</td>
-			  <td><code class="language-bash">Droit d'exécution</code></td>
-			</tr>
-			<tr>
-			  <td>Affecter des droits aux entités u, g et o</td>
-			  <td><code class="language-bash">chmod ugo (u, g et o sont des chiffres compris entre 0 et 6)</code></td>
-			</tr>
-			<tr>
-			  <td>Aucun droit</td>
-			  <td><code class="language-bash">0</code></td>
-			</tr>
-			<tr>
-			  <td>Droit d'exécution seulement</td>
-			  <td><code class="language-bash">1</code></td>
-			</tr>
-			<tr>
-			  <td>Droit d'écriture seulement</td>
-			  <td><code class="language-bash">2</code></td>
-			</tr>
-			<tr>
-			  <td>Droit d'écriture et d'exécution</td>
-			  <td><code class="language-bash">3</code></td>
-			</tr>
-			<tr>
-			  <td>Droit de lecture seulement</td>
-			  <td><code class="language-bash">4</code></td>
-			</tr>
-			<tr>
-			  <td>Droit de lecture et d'exécution</td>
-			  <td><code class="language-bash">5</code></td>
-			</tr>
-			<tr>
-			  <td>Droit de lecture et d'écriture</td>
-			  <td><code class="language-bash">6</code></td>
-			</tr>
-			<tr>
-			  <td>Tous les droits</td>
-			  <td><code class="language-bash">7</code></td>
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Ajouter des droits à une entité</td>
+					  <td><code class="language-bash">chmod entité+droits fichier</code></td>		
+					</tr>
+					<tr>
+					  <td>Enlever des droits à une entité</td>
+					  <td><code class="language-bash">chmod entité-droits fichier</code></td>		
+					</tr>
+					<tr>
+					  <td>Ajouter (enlever) des droits à une entité d'une façon récursive sur les tous les fichiers du dossier</td>
+					  <td><code class="language-bash">chmod -R entité+(-)droits dossier</code></td>		
+					</tr>
+					<tr>
+					  <td>a (all)</td>
+					  <td><code class="language-bash">Toutes les entités</code></td>		
+					</tr>
+					<tr>
+					  <td>u (user)</td>
+					  <td><code class="language-bash">Le propriétaire du fichier</code></td>		
+					</tr>
+					<tr>
+					  <td>g (group)</td>
+					  <td><code class="language-bash">Le groupe auquel appartient le fichier</code></td>
+					</tr>
+					<tr>
+					  <td>o (others)</td>
+					  <td><code class="language-bash">Les autres personnes (autres que le propriétaire et le groupe)</code></td>
+					</tr>
+					<tr>
+					  <td>r (reading)</td>
+					  <td><code class="language-bash">Droit de lecture</code></td>
+					</tr>
+					<tr>
+					  <td>w (writing)</td>
+					  <td><code class="language-bash">Droit d'écriture</code></td>
+					</tr>
+					<tr>
+					  <td>x (execute)</td>
+					  <td><code class="language-bash">Droit d'exécution</code></td>
+					</tr>
+					<tr>
+					  <td>Affecter des droits aux entités u, g et o</td>
+					  <td><code class="language-bash">chmod ugo (u, g et o sont des chiffres compris entre 0 et 6)</code></td>
+					</tr>
+					<tr>
+					  <td>Aucun droit</td>
+					  <td><code class="language-bash">0</code></td>
+					</tr>
+					<tr>
+					  <td>Droit d'exécution seulement</td>
+					  <td><code class="language-bash">1</code></td>
+					</tr>
+					<tr>
+					  <td>Droit d'écriture seulement</td>
+					  <td><code class="language-bash">2</code></td>
+					</tr>
+					<tr>
+					  <td>Droit d'écriture et d'exécution</td>
+					  <td><code class="language-bash">3</code></td>
+					</tr>
+					<tr>
+					  <td>Droit de lecture seulement</td>
+					  <td><code class="language-bash">4</code></td>
+					</tr>
+					<tr>
+					  <td>Droit de lecture et d'exécution</td>
+					  <td><code class="language-bash">5</code></td>
+					</tr>
+					<tr>
+					  <td>Droit de lecture et d'écriture</td>
+					  <td><code class="language-bash">6</code></td>
+					</tr>
+					<tr>
+					  <td>Tous les droits</td>
+					  <td><code class="language-bash">7</code></td>
+					</tr>
+				</table>
 
-		<h2 id="chown"><code>chown</code> : changer le propriétaire d'un fichier</h2>
+				<h2 id="chown"><code>chown</code> : changer le propriétaire d'un fichier</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Changer le propiétaire d'un fichier</td>
-			  <td><code class="language-bash">chown utilisateur:groupe fichier</code></td>	
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Changer le propiétaire d'un fichier</td>
+					  <td><code class="language-bash">chown utilisateur:groupe fichier</code></td>	
+					</tr>
+				</table>
 
-		<h2 id="read"><code>read</code> : lire un fichier</h2>
+				<h2 id="read"><code>read</code> : lire un fichier</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Lire un fichier ligne par ligne</td>
-			  <td><code class="language-bash">while read ligne; do commande_sur_ligne; done < fichier.txt</code></td>	
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Lire un fichier ligne par ligne</td>
+					  <td><code class="language-bash">while read ligne; do commande_sur_ligne; done < fichier.txt</code></td>	
+					</tr>
+				</table>
 
-		<h2 id="ncdump"><code>ncdump</code> : visualiser le contenu d'un fichier NetCDF</h2>
+				<h2 id="ncdump"><code>ncdump</code> : visualiser le contenu d'un fichier NetCDF</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Visualiser les variables</td>
-			  <td><code class="language-bash">ncdump -h fichier.nc</code></td>		
-			</tr>
-			<tr>
-			  <td>Visualiser la valeur d'une variable</td>
-			  <td><code class="language-bash">ncdump fichier.nc -v variable</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Visualiser les variables</td>
+					  <td><code class="language-bash">ncdump -h fichier.nc</code></td>		
+					</tr>
+					<tr>
+					  <td>Visualiser la valeur d'une variable</td>
+					  <td><code class="language-bash">ncdump fichier.nc -v variable</code></td>		
+					</tr>
+				</table>
 
-		<h2 id="sass"><code>sass</code> : le css survitaminé !</h2>
+				<h2 id="sass"><code>sass</code> : le css survitaminé !</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Compiler un fichier .scss en fichier .css</td>
-			  <td><code class="language-bash">sass fichier.scss:fichier.css</code></td>	
-			</tr>
-			<tr>
-			  <td>Compiler un fichier .scss en fichier .css automatiquement à chaque changement</td>
-			  <td><code class="language-bash">sass --watch fichier.scss:fichier.css</code></td>
-			</tr>
-			<tr>
-			  <td>Compiler un fichier .scss en phase de développement (étendu)</td>
-			  <td><code class="language-bash">sass --watch fichier.scss:fichier.css --style expanded</code></td>
-			</tr>
-			<tr>
-			  <td>Compiler un fichier .scss en phase de production (compressé)</td>
-			  <td><code class="language-bash">sass --watch fichier.scss:fichier.css --style compressed</code></td>
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Compiler un fichier .scss en fichier .css</td>
+					  <td><code class="language-bash">sass fichier.scss:fichier.css</code></td>	
+					</tr>
+					<tr>
+					  <td>Compiler un fichier .scss en fichier .css automatiquement à chaque changement</td>
+					  <td><code class="language-bash">sass --watch fichier.scss:fichier.css</code></td>
+					</tr>
+					<tr>
+					  <td>Compiler un fichier .scss en phase de développement (étendu)</td>
+					  <td><code class="language-bash">sass --watch fichier.scss:fichier.css --style expanded</code></td>
+					</tr>
+					<tr>
+					  <td>Compiler un fichier .scss en phase de production (compressé)</td>
+					  <td><code class="language-bash">sass --watch fichier.scss:fichier.css --style compressed</code></td>
+					</tr>
+				</table>
 
-  		<h2 id="git"><code>git</code> : versionner du code</h2>
+		  		<h2 id="git"><code>git</code> : versionner du code</h2>
 
-  		<table class="table table-bordered table-striped">
-			<tr>
-			  <td>Versionner un dossier</td>
-			  <td><code class="language-bash">git init</code></td>		
-			</tr>
-			<tr>
-			  <td>Verifier l'etat d'un dossier versionné et de ses fichiers</td>
-			  <td><code class="language-bash">git status</code></td>		
-			</tr>
-			<tr>
-			  <td>Ajouter un fichier</td>
-			  <td><code class="language-bash">git add</code></td>		
-			</tr>
-			<tr>
-			  <td>Commiter un fichier</td>
-			  <td><code class="language-bash">git commit -m "commentaire"</code></td>		
-			</tr>
-			<tr>
-			  <td>Indexer et commiter un fichier a la suite (raccourci)</td>
-			  <td><code class="language-bash">git commit -am "commentaire"</code></td>		
-			</tr>
-			<tr>
-			  <td>Consulter l'historique des commit</td>
-			  <td><code class="language-bash">git log</code></td>		
-			</tr>
-			<tr>
-			  <td>Récupérer un projet sur GitHub</td>
-			  <td><code class="language-bash">git clone adresse_du_repository</code></td>		
-			</tr>
-			<tr>
-			  <td>Envoyer fichier sur GitHub (apres commit)</td>
-			  <td><code class="language-bash">git push origin master</code></td>		
-			</tr>
-			<tr>
-			  <td>Recuperer un fichier depuis GitHub</td>
-			  <td><code class="language-bash">git pull origin master</code></td>		
-			</tr>
-			<tr>
-			  <td>Verifier les branches presentes</td>
-			  <td><code class="language-bash">git branch</code></td>		
-			</tr>
-			<tr>
-			  <td>Creer une branche nommee nom_branche</td>
-			  <td><code class="language-bash">git branch nom_branche</code></td>		
-			</tr>
-			<tr>
-			  <td>Se placer sur une branche</td>
-			  <td><code class="language-bash">git checkout nom_branche</code></td>		
-			</tr>
-			<tr>
-			  <td>Fusionner une branche nommee nom_branche avec la branche actuelle (sur laquelle on se trouve)</td>
-			  <td><code class="language-bash">git merge nom_branche</code></td>		
-			</tr>
-			<tr>
-			  <td>Mettre de cote une modification (les fichiers ne prendront donc pas en compte la derniere modification en cours)</td>
-			  <td><code class="language-bash">git stash</code></td>		
-			</tr>
-			<tr>
-			  <td>Prendre en compte la modification en cours (mise de cote jusqu'a present)</td>
-			  <td><code class="language-bash">git stash pop</code></td>		
-			</tr>
-		</table>
+		  		<table class="table table-bordered table-striped">
+					<tr>
+					  <td>Versionner un dossier</td>
+					  <td><code class="language-bash">git init</code></td>		
+					</tr>
+					<tr>
+					  <td>Verifier l'etat d'un dossier versionné et de ses fichiers</td>
+					  <td><code class="language-bash">git status</code></td>		
+					</tr>
+					<tr>
+					  <td>Ajouter un fichier</td>
+					  <td><code class="language-bash">git add</code></td>		
+					</tr>
+					<tr>
+					  <td>Commiter un fichier</td>
+					  <td><code class="language-bash">git commit -m "commentaire"</code></td>		
+					</tr>
+					<tr>
+					  <td>Indexer et commiter un fichier a la suite (raccourci)</td>
+					  <td><code class="language-bash">git commit -am "commentaire"</code></td>		
+					</tr>
+					<tr>
+					  <td>Consulter l'historique des commit</td>
+					  <td><code class="language-bash">git log</code></td>		
+					</tr>
+					<tr>
+					  <td>Récupérer un projet sur GitHub</td>
+					  <td><code class="language-bash">git clone adresse_du_repository</code></td>		
+					</tr>
+					<tr>
+					  <td>Envoyer fichier sur GitHub (apres commit)</td>
+					  <td><code class="language-bash">git push origin master</code></td>		
+					</tr>
+					<tr>
+					  <td>Recuperer un fichier depuis GitHub</td>
+					  <td><code class="language-bash">git pull origin master</code></td>		
+					</tr>
+					<tr>
+					  <td>Verifier les branches presentes</td>
+					  <td><code class="language-bash">git branch</code></td>		
+					</tr>
+					<tr>
+					  <td>Creer une branche nommee nom_branche</td>
+					  <td><code class="language-bash">git branch nom_branche</code></td>		
+					</tr>
+					<tr>
+					  <td>Se placer sur une branche</td>
+					  <td><code class="language-bash">git checkout nom_branche</code></td>		
+					</tr>
+					<tr>
+					  <td>Fusionner une branche nommee nom_branche avec la branche actuelle (sur laquelle on se trouve)</td>
+					  <td><code class="language-bash">git merge nom_branche</code></td>		
+					</tr>
+					<tr>
+					  <td>Mettre de cote une modification (les fichiers ne prendront donc pas en compte la derniere modification en cours)</td>
+					  <td><code class="language-bash">git stash</code></td>		
+					</tr>
+					<tr>
+					  <td>Prendre en compte la modification en cours (mise de cote jusqu'a present)</td>
+					  <td><code class="language-bash">git stash pop</code></td>		
+					</tr>
+				</table>
 
-		<h2><code>Sublime Text</code> : l'éditeur de texte vraiment sublime !</h2>
+				<h2><code>Sublime Text</code> : l'éditeur de texte vraiment sublime !</h2>
 
-		<table class="table table-bordered table-striped" id="sub">
-			<tr>
-				<td>Ouvrir un fichier</td>	
-				<td><code class="language-bash">cmd + P</code></td>		
-			</tr>
-			<tr>
-				<td>Ouvrir un nouveau fichier</td>	
-				<td><code class="language-bash">cmd + O</code></td>		
-			</tr>
-			<tr>
-				<td>Ouvrir la palette de commandes</td>
-				<td><code class="language-bash">cmd + shift + P</code></td>
-			</tr>
-			<tr>
-				<td>Accéder aux fonctions codées dans le fichier</td>
-				<td><code class="language-bash">cmd + R</code></td>
-			</tr>
-			<tr>
-				<td>Se placer à une ligne précise dans le fichier</td>
-				<td><code class="language-bash">cmd + G</code></td>	
-			</tr>
-			<tr>
-				<td>Sélection de plusieurs éléments simultanément</td>
-				<td><code class="language-bash">cmd (maintenu) + sélection</code></td>
-			</tr>
-			<tr>
-				<td>Sélection verticale de plusieurs éléments simultanément</td>
-				<td><code class="language-bash">alt (maintenu) + sélection verticale</code></td>
-			</tr>
-			<tr>
-				<td>Installer un plugin Sublim Text avec Package Control</td>
-				<td><code class="language-bash">cmd + alt + P puis taper "install"</code></td>		
-			</tr>
-			<tr>
-				<td>Commenter un morceau de code</td>
-				<td><code class="language-bash">cmd + shift + /</code></td>
-			</tr>
-		</table>
+				<table class="table table-bordered table-striped" id="sub">
+					<tr>
+						<td>Ouvrir un fichier</td>	
+						<td><code class="language-bash">cmd + P</code></td>		
+					</tr>
+					<tr>
+						<td>Ouvrir un nouveau fichier</td>	
+						<td><code class="language-bash">cmd + O</code></td>		
+					</tr>
+					<tr>
+						<td>Ouvrir la palette de commandes</td>
+						<td><code class="language-bash">cmd + shift + P</code></td>
+					</tr>
+					<tr>
+						<td>Accéder aux fonctions codées dans le fichier</td>
+						<td><code class="language-bash">cmd + R</code></td>
+					</tr>
+					<tr>
+						<td>Se placer à une ligne précise dans le fichier</td>
+						<td><code class="language-bash">cmd + G</code></td>	
+					</tr>
+					<tr>
+						<td>Sélection de plusieurs éléments simultanément</td>
+						<td><code class="language-bash">cmd (maintenu) + sélection</code></td>
+					</tr>
+					<tr>
+						<td>Sélection verticale de plusieurs éléments simultanément</td>
+						<td><code class="language-bash">alt (maintenu) + sélection verticale</code></td>
+					</tr>
+					<tr>
+						<td>Installer un plugin Sublim Text avec Package Control</td>
+						<td><code class="language-bash">cmd + alt + P puis taper "install"</code></td>		
+					</tr>
+					<tr>
+						<td>Commenter un morceau de code</td>
+						<td><code class="language-bash">cmd + shift + /</code></td>
+					</tr>
+				</table>
 
-	</div>
+			</div> <!-- middle colomn end-->
+		</div> <!-- row end-->
+
+	</div>	<!-- container end-->
 
 	<script src="/dist/js/app.min.js"></script>
 

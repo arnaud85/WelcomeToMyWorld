@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Memento geek</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+	
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Accueil</a></li>
+					<li><a href="#">Auteur</a></li>
+					<li><a href="#">Sciences</a></li>
+					<li><a href="#">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav> 
+	
+	<div class="container">
+
+		<a href="#ssh" class="btn btn-info active" role="button">ssh</a>
+		<a href="#tar" class="btn btn-info active" role="button">tar</a>
+		<a href="#gzip" class="btn btn-info active" role="button">gzip</a>
+		<a href="#alias" class="btn btn-info active" role="button">alias</a>
+		<a href="#ln" class="btn btn-info active" role="button">ln</a>
+		<a href="#ls" class="btn btn-info active" role="button">ls</a>
+		<a href="#git" class="btn btn-danger active" role="button">git</a>
+		<a href="#sub" class="btn btn-warning active" role="button">sublime text</a>
+
+
+		<h2 id="ssh"><code>ssh</code> : connexion sécurisée à distance</h2>
+
+		<table class="table table-bordered table-striped">
+    		<tbody>
+				<tr>
+					<td>Connexion sécurisée avec une machine distante</td>
+					<td><code class="language-bash">ssh login@ip</code></td>
+				</tr>
+				<tr>
+					<td>Connexion sécurisée avec une machine distante et affichage du bureau</td>
+					<td><code class="language-bash">ssh -X login@ip</code></td>
+				</tr>
+				<tr>
+					<td>Exécution d'une commande à distance</td>
+					<td><code class="language-bash">ssh login@ip bash < script</code></td>
+				</tr>
+				<tr>
+					<td>Générer une paire de clé publique/privée</td>
+					<td><code class="language-bash">ssh-keygen -t rsa</code></td>
+				</tr>
+				<tr>
+					<td>Envoyer la clé publique sur l'hôte distant</td>
+					<td><code class="language-bash">ssh-copy-id -i id_rsa.pub login@ip</code></td>
+				</tr>
+    		</tbody>
+  		</table>
+
+  		<h2 id="tar"><code>tar</code> : création/extraction d'une archive</h2>
+
+		<table class="table table-bordered table-striped">
+    		<tbody>
+				<tr>
+					<td>Créer une archive à partir de fichiers (v : mode verbeux; f : pour spécifier les fichiers)</td>
+					<td><code class="language-bash">tar -cvf nom_archive.tar fichier1 fichier2 ... fichierN</code></td>
+				</tr>
+				<tr>
+					<td>Créer une archive à partir d'un dossier</td>
+					<td><code class="language-bash">tar -cvf nom_archive.tar dossier/</code></td>
+				</tr>
+				<tr>
+					<td>Créer une archive au format tar.gz à partir d'un dossier</td>
+					<td><code class="language-bash">tar -czvf nom_archive.tar.gz dossier/</code></td>
+				</tr>
+				<tr>
+					<td>Créer une archive au format tar.bz2 à partir d'un dossier</td>
+					<td><code class="language-bash">tar -cjvf nom_archive.tar.bz2 dossier/</code></td>
+				</tr>
+				<tr>
+					<td>Extraire une archive au format tar.gz</td>
+					<td><code class="language-bash">tar -xzvf nom_archive.tar.gz</code></td>
+				</tr>
+				<tr>
+					<td>Extraire une archive au format tar.bz2</td>
+					<td><code class="language-bash">tar -xjvf nom_archive.tar.bz2</code></td>
+				</tr>
+				<tr>
+					<td>Lister le contenu d'une archive</td>
+					<td><code class="language-bash">tar -tf nom_archive.tar</code></td>
+				</tr>
+    		</tbody>
+  		</table>
+
+  		<h2 id="gzip"><code>gzip</code> : décompresser une archive</h2>
+
+		<table class="table table-bordered table-striped">
+    		<tbody>
+				<tr>
+					<td>Décompresser un fichier <em>.gz</em></td>
+					<td><code class="language-bash">gzip -d fichier.gz</code></td>
+				</tr>
+    		</tbody>
+  		</table>
+
+  		<h2 id="alias"><code>alias</code> : créer un alias pour une commande</h2>
+
+		<table class="table table-bordered table-striped">
+    		<tbody>
+				<tr>
+					<td>Créer un alias</td>
+					<td><code class="language-bash">alias nom_alias='commande'</code></td>
+				</tr>
+    		</tbody>
+  		</table>
+
+  		<h2 id="ln"><code>ln</code> : créer un lien</h2>
+
+  		<table class="table table-bordered table-striped">
+    		<tbody>
+				<tr>
+					<td>Créer un lien symbolique</td>
+					<td><code class="language-bash">ln -s nom_du_fichier nom_du_lien</code></td>
+				</tr>
+    		</tbody>
+  		</table>
+
+  		<h2 id="ls"><code>ls</code> : lister le contenu d'un dossier</h2>
+
+  		<table class="table table-bordered table-striped">
+    		<tbody>
+				<tr>
+					<td>Lister le contenu d'un dossier</td>
+					<td><code class="language-bash">ls chemin_dossier</code></td>
+				</tr>
+				<tr>
+					<td>Lister le contenu d'un dossier en détail</td>
+					<td><code class="language-bash">ls -l chemin_dossier</code></td>
+				</tr>
+				<tr>
+					<td>Lister le contenu d'un dossier, y compris les dossiers cachés</td>
+					<td><code class="language-bash">ls -a chemin_dossier</code></td>
+				</tr>
+				<tr>
+					<td>Lister le contenu d'un dossier avec la taille des fichiers</td>
+					<td><code class="language-bash">ls -h chemin_dossier</code></td>
+				</tr>
+				<tr>
+					<td>Trier les fichiers par date, du plus récent au plus ancien</td>
+					<td><code class="language-bash">ls -t chemin_dossier</code></td>
+				</tr>
+				<tr>
+					<td>Trier les fichiers par taille décroissante</td>
+					<td><code class="language-bash">ls -S chemin_dossier</code></td>
+				</tr>
+				<tr>
+					<td>Inverser le tri</td>
+					<td><code class="language-bash">ls -r chemin_dossier</code></td>
+				</tr>
+				<tr>
+					<td>Compter le nombre de fichiers présents dans un dossier</td>
+					<td><code class="language-bash">ls -al | wc -l</code></td>
+				</tr>
+				<tr>
+					<td>Compter le nombre de fichiers présents dans un dossier, sans compter "." et ".."</td>
+					<td><code class="language-bash">ls -1 | wc -l</code></td>
+				</tr>
+    		</tbody>
+  		</table>
+
+  		<h2><code>git</code> : versionner du code</h2>
+
+  		<table class="table table-bordered table-striped" id="git">
+			<tr>
+			  <td>Versionner un dossier</td>
+			  <td><code class="language-bash">git init</code></td>		
+			</tr>
+			<tr>
+			  <td>Verifier l'etat d'un dossier versionné et de ses fichiers</td>
+			  <td><code class="language-bash">git status</code></td>		
+			</tr>
+			<tr>
+			  <td>Ajouter un fichier</td>
+			  <td><code class="language-bash">git add</code></td>		
+			</tr>
+			<tr>
+			  <td>Commiter un fichier</td>
+			  <td><code class="language-bash">git commit -m "commentaire"</code></td>		
+			</tr>
+			<tr>
+			  <td>Indexer et commiter un fichier a la suite (raccourci)</td>
+			  <td><code class="language-bash">git commit -am "commentaire"</code></td>		
+			</tr>
+			<tr>
+			  <td>Consulter l'historique des commit</td>
+			  <td><code class="language-bash">git log</code></td>		
+			</tr>
+			<tr>
+			  <td>Récupérer un projet sur GitHub</td>
+			  <td><code class="language-bash">git clone adresse_du_repository</code></td>		
+			</tr>
+			<tr>
+			  <td>Envoyer fichier sur GitHub (apres commit)</td>
+			  <td><code class="language-bash">git push origin master</code></td>		
+			</tr>
+			<tr>
+			  <td>Recuperer un fichier depuis GitHub</td>
+			  <td><code class="language-bash">git pull origin master</code></td>		
+			</tr>
+			<tr>
+			  <td>Verifier les branches presentes</td>
+			  <td><code class="language-bash">git branch</code></td>		
+			</tr>
+			<tr>
+			  <td>Creer une branche nommee nom_branche</td>
+			  <td><code class="language-bash">git branch nom_branche</code></td>		
+			</tr>
+			<tr>
+			  <td>Se placer sur une branche</td>
+			  <td><code class="language-bash">git checkout nom_branche</code></td>		
+			</tr>
+			<tr>
+			  <td>Fusionner une branche nommee nom_branche avec la branche actuelle (sur laquelle on se trouve)</td>
+			  <td><code class="language-bash">git merge nom_branche</code></td>		
+			</tr>
+			<tr>
+			  <td>Mettre de cote une modification (les fichiers ne prendront donc pas en compte la derniere modification en cours)</td>
+			  <td><code class="language-bash">git stash</code></td>		
+			</tr>
+			<tr>
+			  <td>Prendre en compte la modification en cours (mise de cote jusqu'a present)</td>
+			  <td><code class="language-bash">git stash pop</code></td>		
+			</tr>
+		</table>
+
+		<h2><code>Sublime Text</code> : l'éditeur de texte vraiment sublime !</h2>
+
+		<table class="table table-bordered table-striped" id="sub">
+			<tr>
+				<td>Ouvrir un fichier</td>	
+				<td><code class="language-bash">cmd + P</code></td>		
+			</tr>
+			<tr>
+				<td>Ouvrir un nouveau fichier</td>	
+				<td><code class="language-bash">cmd + O</code></td>		
+			</tr>
+			<tr>
+				<td>Ouvrir la palette de commandes</td>
+				<td><code class="language-bash">cmd + shift + P</code></td>
+			</tr>
+			<tr>
+				<td>Accéder aux fonctions codées dans le fichier</td>
+				<td><code class="language-bash">cmd + R</code></td>
+			</tr>
+			<tr>
+				<td>Se placer à une ligne précise dans le fichier</td>
+				<td><code class="language-bash">cmd + G</code></td>	
+			</tr>
+			<tr>
+				<td>Sélection de plusieurs éléments simultanément</td>
+				<td><code class="language-bash">cmd (maintenu) + sélection</code></td>
+			</tr>
+			<tr>
+				<td>Sélection verticale de plusieurs éléments simultanément</td>
+				<td><code class="language-bash">alt (maintenu) + sélection verticale</code></td>
+			</tr>
+			<tr>
+				<td>Installer un plugin Sublim Text avec Package Control</td>
+				<td><code class="language-bash">cmd + alt + P puis taper "install"</code></td>		
+			</tr>
+			<tr>
+				<td>Commenter un morceau de code</td>
+				<td><code class="language-bash">cmd + shift + /</code></td>
+			</tr>
+		</table>
+
+	</div>
+
+	<script src="/dist/js/app.min.js"></script>
+
+</body>
+
+</html>

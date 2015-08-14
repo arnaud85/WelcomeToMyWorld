@@ -41,7 +41,26 @@
 		<a href="#alias" class="btn btn-info active" role="button">alias</a>
 		<a href="#ln" class="btn btn-info active" role="button">ln</a>
 		<a href="#ls" class="btn btn-info active" role="button">ls</a>
-		<a href="#git" class="btn btn-danger active" role="button">git</a>
+		<a href="#ldd" class="btn btn-info active" role="button">ldd</a>
+		<a href="#head" class="btn btn-info active" role="button">head</a>
+		<a href="#tail" class="btn btn-info active" role="button">tail</a>
+		<a href="#date" class="btn btn-info active" role="button">date</a>
+		<a href="#top" class="btn btn-info active" role="button">top</a>
+		<a href="#free" class="btn btn-info active" role="button">free</a>
+		<a href="#paste" class="btn btn-info active" role="button">paste</a>
+		<a href="#sort" class="btn btn-info active" role="button">sort</a>
+		<a href="#sed" class="btn btn-info active" role="button">sed</a>
+		<a href="#grep" class="btn btn-info active" role="button">grep</a>
+		<a href="#kill" class="btn btn-info active" role="button">kill</a>
+		<a href="#op$" class="btn btn-info active" role="button">$</a>
+		<a href="#screenshot" class="btn btn-info active" role="button">gnome-screenshot</a>
+		<a href="#awk" class="btn btn-info active" role="button">awk</a>
+		<a href="#chmod" class="btn btn-info active" role="button">chmod</a>
+		<a href="#chown" class="btn btn-info active" role="button">chown</a>
+		<a href="#read" class="btn btn-info active" role="button">read</a>
+		<a href="#ncdump" class="btn btn-success active" role="button">ncdump</a>
+		<a href="#sass" class="btn btn-success active" role="button">sass</a>
+		<a href="#git" class="btn btn-success active" role="button">git</a>
 		<a href="#sub" class="btn btn-warning active" role="button">sublime text</a>
 
 
@@ -183,9 +202,344 @@
     		</tbody>
   		</table>
 
-  		<h2><code>git</code> : versionner du code</h2>
+  		<h2 id="ldd"><code>ldd</code> : lister les dépendances</h2>
 
-  		<table class="table table-bordered table-striped" id="git">
+  		<table class="table table-bordered table-striped" id="">
+			<tr>
+			  <td>Lister les dépendances d'un exécutable</td>
+			  <td><code class="language-bash">ldd -v nom_executable</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="head"><code>head</code> : voir le début d'un fichier</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Voir les premières lignes d'un fichier</td>
+			  <td><code class="language-bash">head fichier.txt</code></td>		
+			</tr>
+			<tr>
+			  <td>Supprimer les (n) premières lignes d'un fichier (en gardant un fichier bak)	</td>
+			  <td><code class="language-bash">head -(n) fichier.txt > nouveau_fichier.txt</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="tail"><code>tail</code> : voir la fin d'un fichier</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Voir les dernières lignes d'un fichier</td>
+			  <td><code class="language-bash">tail fichier.txt</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="date"><code>date</code> : manipuler des dates</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Afficher la date</td>
+			  <td><code class="language-bash">date</code></td>		
+			</tr>
+			<tr>
+			  <td>Afficher la date au format temps universelle UTC</td>
+			  <td><code class="language-bash">date -u</code></td>		
+			</tr>
+			<tr>
+			  <td>Afficher la date sous forme de timestamp (nombres de secondes écoulées depuis le 01/01/1970 à 00:00:00)</td>
+			  <td><code class="language-bash">date +%s</code></td>		
+			</tr>
+			<tr>
+			  <td>Afficher la date d'une façon structurée</td>
+			  <td><code class="language-bash">date -u +"%Y-%m-%d %H:%M:%S UTC"</code></td>		
+			</tr>
+			<tr>
+			  <td>Afficher une date spécifique sous forme de timestamp</td>
+			  <td><code class="language-bash">date -d "yyyy-mm-dd HH:MM:SS" +%s</code></td>		
+			</tr>
+			<tr>
+			  <td>Convertir un timestamp en date</td>
+			  <td><code class="language-bash">date -d @timestamp</code></td>		
+			</tr>
+			<tr>
+			  <td>Convertir un timestamp en date sous le format "YYYY-MM-DD HH:mm:ss"</td>
+			  <td><code class="language-bash">date -d @timestamp '+%Y-%m-%d %H:%M:%S'</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="top"><code>top</code> : afficher les processus en cours</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Affiche les processus actuellement en cours</td>
+			  <td><code class="language-bash">top</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="free"><code>free</code> : afficher la mémoire</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Affiche la mémoire disponible</td>
+			  <td><code class="language-bash">free</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="paste"><code>paste</code> : copier un fichier dans un autre</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Créer un fichier contenant les colonnes d'un fichier suivi des colonnes d'un second</td>
+			  <td><code class="language-bash">paste fichier_1.txt fichier_2.txt >> fichier_3.txt</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="sort"><code>sort</code> : trier un fichier suivant une clé</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Trier un fichier texte suivant une clé (par rapport à une colonne repérée par son numéro : 1, 2, etc ...)</td>
+			  <td><code class="language-bash">sort -k(clé) fichier.txt</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="sed"><code>sed</code> : substituer un mot par un autre</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Substituer un mot par un autre dans un fichier</td>
+			  <td><code class="language-bash">sed -i -r 's/mot_a_substituer/nouveau_mot/g' nom_du_fichier</code></td>		
+			</tr>
+			<tr>
+			  <td>Supprimer les (n) dernieres lignes d'un fichier (en gardant un fichier bak)</td>
+			  <td><code class="language-bash">sed -i.bak "1,(n)d" fichier.txt</code></td>	
+			</tr>
+			<tr>
+			  <td>Supprimer toutes lignes d'un fichier contenant le mot "(mot)"</td>
+			  <td><code class="language-bash">sed -i '/(mot)/d' fichier.txt</code></td>	
+			</tr>
+		</table>
+
+		<h2 id="grep"><code>grep</code> : capturer une chaine de caractères</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Afficher les lignes (et le numéro de ligne) contenant le mot "(mot)" dans un fichier</td>
+			  <td><code class="language-bash">grep -n (mot) fichier.txt</code></td>		
+			</tr>
+			<tr>
+			  <td>Compter le nombre de lignes contenant le mot "(mot)" dans un fichier</td>
+			  <td><code class="language-bash">grep -n (mot) fichier.txt | wc -l</code></td>	
+			</tr>
+		</table>
+
+		<h2 id="kill"><code>kill</code> : tuer un processus</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Tuer un processus</td>
+			  <td><code class="language-bash">kill pid_processus</code></td>		
+			</tr>
+			<tr>
+			  <td>Tuer violemment un processus (forcer)</td>
+			  <td><code class="language-bash">kill 9 pid_processus</code></td>	
+			</tr>
+		</table>
+
+		<h2 id="op$"><code>Opérateur $</code> : interpréter une commande</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Interpréter une commande</td>
+			  <td><code class="language-bash">$( commande )</code></td>		
+			</tr>
+			<tr>
+			  <td>Interpréter un calcul arithmétique</td>
+			  <td><code class="language-bash">$(( calcul ))</code></td>	
+			</tr>
+			<tr>
+			  <td>Prendre une sous-chaine d'une chaine contenue dans une variable</td>
+			  <td><code class="language-bash">${variable:debut:nombre_de_caractères}</code></td>	
+			</tr>
+		</table>
+
+		<h2 id="screenshot"><code>gnome-screenshot</code> : faire une capture d'écran avec le bureau Gnome</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Faire une capture d'écran</td>
+			  <td><code class="language-bash">gnome-screenshot</code></td>		
+			</tr>
+			<tr>
+			  <td>Prendre une capture de la fenêtre qui a le focus</td>
+			  <td><code class="language-bash">gnome-screenshot --window</code></td>	
+			</tr>
+			<tr>
+			  <td>Prendre une capture de la fenêtre ou de l'écran, après le délai renseigné en secondes</td>
+			  <td><code class="language-bash">gnome-screenshot --delay=10</code></td>	
+			</tr>
+			<tr>
+			  <td>Prendre une capture qui comprend les bords de l'écran</td>
+			  <td><code class="language-bash">gnome-screenshot --include-border</code></td>	
+			</tr>
+			<tr>
+			  <td>Prendre une capture et ajouter un effet ombré tout autour</td>
+			  <td><code class="language-bash">gnome-screenshot --border-effect=shadow</code></td>	
+			</tr>
+			<tr>
+			  <td>Prendre une capture de la fenêtre ou de l'écran, et entourer la capture d'un cadre</td>
+			  <td><code class="language-bash">gnome-screenshot --border-effect=border</code></td>	
+			</tr>
+			<tr>
+			  <td>Prendre une capture de la zone que vous délimiterez avec la souris</td>
+			  <td><code class="language-bash">gnome-screenshot --area</code></td>	
+			</tr>
+		</table>
+
+		<h2 id="awk"><code>awk</code> : visualiser le contenu d'un fichier NetCDF</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Afficher la colonne n° X d'un fichier texte ayant comme séparateur de champ FS (par défaut : " ")</td>
+			  <td><code class="language-bash">awk -F "FS" '{ print $X }' fichier.txt</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="chmod"><code>chmod</code> : changer les droits sur un fichier</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Ajouter des droits à une entité</td>
+			  <td><code class="language-bash">chmod entité+droits fichier</code></td>		
+			</tr>
+			<tr>
+			  <td>Enlever des droits à une entité</td>
+			  <td><code class="language-bash">chmod entité-droits fichier</code></td>		
+			</tr>
+			<tr>
+			  <td>Ajouter (enlever) des droits à une entité d'une façon récursive sur les tous les fichiers du dossier</td>
+			  <td><code class="language-bash">chmod -R entité+(-)droits dossier</code></td>		
+			</tr>
+			<tr>
+			  <td>a (all)</td>
+			  <td><code class="language-bash">Toutes les entités</code></td>		
+			</tr>
+			<tr>
+			  <td>u (user)</td>
+			  <td><code class="language-bash">Le propriétaire du fichier</code></td>		
+			</tr>
+			<tr>
+			  <td>g (group)</td>
+			  <td><code class="language-bash">Le groupe auquel appartient le fichier</code></td>
+			</tr>
+			<tr>
+			  <td>o (others)</td>
+			  <td><code class="language-bash">Les autres personnes (autres que le propriétaire et le groupe)</code></td>
+			</tr>
+			<tr>
+			  <td>r (reading)</td>
+			  <td><code class="language-bash">Droit de lecture</code></td>
+			</tr>
+			<tr>
+			  <td>w (writing)</td>
+			  <td><code class="language-bash">Droit d'écriture</code></td>
+			</tr>
+			<tr>
+			  <td>x (execute)</td>
+			  <td><code class="language-bash">Droit d'exécution</code></td>
+			</tr>
+			<tr>
+			  <td>Affecter des droits aux entités u, g et o</td>
+			  <td><code class="language-bash">chmod ugo (u, g et o sont des chiffres compris entre 0 et 6)</code></td>
+			</tr>
+			<tr>
+			  <td>Aucun droit</td>
+			  <td><code class="language-bash">0</code></td>
+			</tr>
+			<tr>
+			  <td>Droit d'exécution seulement</td>
+			  <td><code class="language-bash">1</code></td>
+			</tr>
+			<tr>
+			  <td>Droit d'écriture seulement</td>
+			  <td><code class="language-bash">2</code></td>
+			</tr>
+			<tr>
+			  <td>Droit d'écriture et d'exécution</td>
+			  <td><code class="language-bash">3</code></td>
+			</tr>
+			<tr>
+			  <td>Droit de lecture seulement</td>
+			  <td><code class="language-bash">4</code></td>
+			</tr>
+			<tr>
+			  <td>Droit de lecture et d'exécution</td>
+			  <td><code class="language-bash">5</code></td>
+			</tr>
+			<tr>
+			  <td>Droit de lecture et d'écriture</td>
+			  <td><code class="language-bash">6</code></td>
+			</tr>
+			<tr>
+			  <td>Tous les droits</td>
+			  <td><code class="language-bash">7</code></td>
+			</tr>
+		</table>
+
+		<h2 id="chown"><code>chown</code> : changer le propriétaire d'un fichier</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Changer le propiétaire d'un fichier</td>
+			  <td><code class="language-bash">chown utilisateur:groupe fichier</code></td>	
+			</tr>
+		</table>
+
+		<h2 id="read"><code>read</code> : lire un fichier</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Lire un fichier ligne par ligne</td>
+			  <td><code class="language-bash">while read ligne; do commande_sur_ligne; done < fichier.txt</code></td>	
+			</tr>
+		</table>
+
+		<h2 id="ncdump"><code>ncdump</code> : visualiser le contenu d'un fichier NetCDF</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Visualiser les variables</td>
+			  <td><code class="language-bash">ncdump -h fichier.nc</code></td>		
+			</tr>
+			<tr>
+			  <td>Visualiser la valeur d'une variable</td>
+			  <td><code class="language-bash">ncdump fichier.nc -v variable</code></td>		
+			</tr>
+		</table>
+
+		<h2 id="sass"><code>sass</code> : le css survitaminé !</h2>
+
+  		<table class="table table-bordered table-striped">
+			<tr>
+			  <td>Compiler un fichier .scss en fichier .css</td>
+			  <td><code class="language-bash">sass fichier.scss:fichier.css</code></td>	
+			</tr>
+			<tr>
+			  <td>Compiler un fichier .scss en fichier .css automatiquement à chaque changement</td>
+			  <td><code class="language-bash">sass --watch fichier.scss:fichier.css</code></td>
+			</tr>
+			<tr>
+			  <td>Compiler un fichier .scss en phase de développement (étendu)</td>
+			  <td><code class="language-bash">sass --watch fichier.scss:fichier.css --style expanded</code></td>
+			</tr>
+			<tr>
+			  <td>Compiler un fichier .scss en phase de production (compressé)</td>
+			  <td><code class="language-bash">sass --watch fichier.scss:fichier.css --style compressed</code></td>
+			</tr>
+		</table>
+
+  		<h2 id="git"><code>git</code> : versionner du code</h2>
+
+  		<table class="table table-bordered table-striped">
 			<tr>
 			  <td>Versionner un dossier</td>
 			  <td><code class="language-bash">git init</code></td>		

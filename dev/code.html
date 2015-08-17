@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Formulaire finance de marché</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Accueil</a></li>
+					<li><a href="#">Auteur</a></li>
+					<li><a href="#">Sciences</a></li>
+					<li><a href="#">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav> 
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>Un petit formulaire pour faire le beau en société et sortir plein de choses incompréhensibles pour un humain normalement constitué ...</p>
+		</div>
+	</div>
+
+	<div class="container">
+
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+
+				<p>
+					<a href="#loinorm" class="btn btn-default" role="button">Loi normale centrée réduite</a>
+
+					<a href="#loinormc" class="btn btn-default" role="button">Loi normale centrée réduite cumulée</a>
+
+				</p>
+
+				<p>
+					<a href="#bin1" class="btn btn-info" role="button">Formule binomiale à une seule période</a>
+
+					<a href="#crr" class="btn btn-info" role="button">Formule de Cox-Ross-Rubinstein</a>
+				</p>
+
+				<p>
+					<a href="#bs" class="btn btn-primary" role="button">Formule de Black-Scholes</a>
+
+					<a href="#delta" class="btn btn-primary" role="button">Delta</a>
+
+					<a href="#gamma" class="btn btn-primary" role="button">Gamma</a>
+
+					<a href="#theta" class="btn btn-primary" role="button">Theta</a>
+
+					<a href="#vega" class="btn btn-primary" role="button">Vega</a>
+
+					<a href="#rho" class="btn btn-primary" role="button">Rho</a>
+				</p>
+			</div>
+		</div>
+
+		<br/><br/>
+
+		<div class="row">
+			<div class="col-xs-6 col-xs-offset-3">
+
+				<h3 class="text-center" id="loinorm">Loi normale centrée réduite</h3><br/>
+				<p>$$ \boxed{ n(x) = \frac{1}{\sqrt(2\Pi)}\exp(-\frac{x^{2}}{2}) } $$</p><br/>
+				<pre class="line-numbers"><code class="language-c++">double n(const double& z)
+{
+
+	return (1.0/sqrt(2.0*M_PI))*exp(-0.5*z*z);
+
+}</code></pre><br/><br/>
+
+				<h3 class="text-center" id="loinormc">Loi normale centrée réduite cumulée</h3><br/>
+				<p>$$ \boxed{ N(x) = \frac{1}{\sqrt(2\Pi)}\int_{-\infty}^{d1}\exp(-\frac{x^{2}}{2})dx } $$</p><br/>
+				<pre class="line-numbers"><code class="language-c++">double N(const double& z)
+{
+   if (z > 6.0)
+   { 
+      	return 1.0; 
+   }
+
+   if (z < -6.0) { 
+      	return 0.0; 
+   }
+
+   double b1 = 0.31938153;
+   double b2 = -0.356563782;
+   double b3 = 1.781477937;
+   double b4 = -1.821255978;
+   double b5 = 1.330274429;
+   double p = 0.2316419;
+   double c2 = 0.3989423;
+   double a=fabs(z);
+
+   double t = 1.0/(1.0+a*p);
+
+   double b = c2*exp((-z)*(z/2.0));
+
+   double n = ((((b5*t+b4)*t+b3)*t+b2)*t+b1)*t;
+
+   n = 1.0 - b*n;
+
+   if ( z < 0.0 ) 
+   {
+      	n = 1.0 - n;
+   }
+
+   return n;
+}</code></pre><br/><br/>
+
+			<h3 class="text-center" id="bin1">Formule binomiale à une seule période</h3><br/>
+			<p>$$ \boxed{ V_{0} = \frac{1}{1 + r}[q \times V_{1}(hS_{0}) + (1 - q) \times V_{1}(bS_{0})] } $$</p><br/>
+
+			<h4>Pour un <code>call</code></h4>
+			<pre class="line-numbers"><code class="language-c++">double binomial_single_period_call_u_d(const double& S, const double& K, const double& r, const double& up, const double& down)
+{
+   double u = 1 + (up/100);
+   double d = 1 - (down/100);
+   double p_up = (exp(r/100) - d)/(u - d);
+   double p_down = 1.0-p_up;
+   double call_up = max(0.0,(u*S - K));
+   double call_down = max(0.0,(d*S - K));
+
+   return exp(-r/100)*(p_up*call_up + p_down*call_down);
+}</code></pre><br/><br/>
+			
+			<h4>Pour un <code>put</code></h4>	
+			<pre class="line-numbers"><code class="language-c++">double binomial_single_period_put_u_d(const double& S, const double& K, const double& r, const double& up, const double& down)
+{
+   double u = 1 + (up/100);
+   double d = 1 - (down/100);
+   double p_up = (exp(r/100) - d)/(u - d);
+   double p_down = 1.0-p_up;
+   double put_up = max(0.0, (K - u*S));
+   double put_down = max(0.0, (K - d*S));
+
+   return exp(-r/100)*(p_up*put_up + p_down*put_down)
+}</code></pre><br/><br/>
+
+			<h3 class="text-center" id="crr">Formule de Cox-Ross-Rubinstein</h3><br/>
+
+			<p>$$ \boxed{ V_{0}(S_{0}) = \frac{1}{(1 + r)^{n}} \sum_{k = 0}^{n} C\begin{pmatrix} n \\ k \end{pmatrix} \; q^{n} \; (1 - q)^{n - k} \; V_{t}(h^{n}b^{n - k}S_{0}) } $$</p><br/><br/>
+
+			<h4>Pour un <code>call</code></h4>	
+			<pre class="line-numbers"><code class="language-c++">double binomial_call_u_d(const double& S, const double& K, const double& r, const double& up, const double& down, const int& n_steps)
+{
+   double u = 1 + (up/100);
+   double d = 1 - (down/100);
+   double p_up = (exp(r/100) - d)/(u - d);
+   double p_down = 1.0-p_up;
+
+   vector prices(n_steps + 1); 
+   prices[0] = S*pow(d, n_steps);
+   for (int i = 1; i <= n_steps; ++i)
+   {
+      	prices[i] = u*u*prices[i - 1];
+   }
+
+   vector call_values(n_steps + 1); 
+   for (int i = 0; i <= n_steps; ++i) 
+   { 
+      	call_values[i] = max(0.0, (prices[i] - K));
+   }
+
+   for (int j = n_steps - 1; j >= 0; --j)
+   {
+      	for (int i = 0; i <= j; ++i) 
+      	{
+         	call_values[i] = (p_up*call_values[i + 1] + p_down*call_values[i])*exp(-r/100);
+      	}
+   }
+
+   return call_values[0];
+}</code></pre><br/><br/>
+
+
+			<h4>Pour un <code>put</code></h4>	
+			<pre class="line-numbers"><code class="language-c++">double binomial_put_u_d(const double& S, const double& K, const double& r, const double& up, const double& down, const int& n_steps)
+{
+   double u = 1 + (up/100);
+   double d = 1 - (down/100);
+   double p_up = (exp(r/100) - d)/(u - d);
+   double p_down = 1.0-p_up;
+
+   vector prices(n_steps + 1); 
+   prices[0] = S*pow(d, n_steps);
+   for (int i = 1; i <= n_steps; ++i)
+   {
+      	prices[i] = u*u*prices[i - 1];
+   }
+
+   vector put_values(n_steps + 1); 
+   for (int i = 0; i <= n_steps; ++i) 
+   { 
+      	put_values[i] = max(0.0, (K - prices[i]));
+   }
+
+   for (int j = n_steps - 1; j >= 0; --j)
+   {
+      	for (int i = 0; i <= j; ++i) 
+      	{
+         	put_values[i] = (p_up*put_values[i + 1] + p_down*put_values[i])*exp(-r/100);
+      	}
+   }
+
+   return put_values[0];
+}</code></pre><br/><br/>
+
+
+			<h3 class="text-center" id="bs">FORMULE DE BLACK-SCHOLES</h3><br/>
+
+			<p>$$
+				\boxed 
+				{
+				\left.
+					\begin{array}{r c l}
+					C(S, t) &=& S N(d1) - K \exp(-r(T - t)) N(d2)\\
+					P(S, t) &=& K \exp(-r(T - t)) N(-d2) - S N(-d1)\\
+					\end{array}
+				\right.
+				}
+				$$</p><br/><br/>
+
+				<h4>Pour un <code>call</code></h4>
+			
+				<pre class="line-numbers"><code class="language-c++">double Black_Scholes_CALL(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+   double d2 = d1 - ((sigma/100)*sqrt(t));
+
+   return S*N(d1) - K*exp(-(r/100)*t)*N(d2);
+}</code></pre><br/><br/>
+
+			<h4>Pour un <code>put</code></h4>	
+			
+			<pre class="line-numbers"><code class="language-c++">double Black_Scholes_PUT(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+   double d2 = d1 - ((sigma/100)*sqrt(t));
+
+   return K*exp(-(r/100)*t)*N(-d2) - S*N(-d1);
+}</code></pre><br/><br/>
+
+			<h3 class="text-center" id="delta">DELTA</h3><br/>
+
+			<p>
+				$$
+				\boxed 
+				{
+				\left.
+					\begin{array}{r c l}
+					\delta_{call} &=& N(d1)\\
+					\delta_{put} &=& N(d1) - 1\\
+					\end{array}
+				\right.
+				}
+				$$	
+				</p><br/><br/>
+
+				<h4>Pour un <code>call</code></h4>	
+			
+				<pre class="line-numbers"><code class="language-c++">double Black_Scholes_DELTA_CALL(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   return N(d1);
+}</code></pre><br/><br/>
+
+				<h4>Pour un <code>put</code></h4>	
+			
+				<pre class="line-numbers"><code class="language-c++">double Black_Scholes_DELTA_PUT(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   return N(d1) - 1;
+}</code></pre><br/><br/>
+
+			<h3 class="text-center" id="gamma">GAMMA</h3><br/>
+
+			<p>
+				$$ \boxed{ \gamma = \frac{N'(d1)}{S \sigma \sqrt t} } $$
+			</p><br/><br/>	
+			
+			<pre class="line-numbers"><code class="language-c++">double Black_Scholes_GAMMA(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   return n(d1)/(S*(sigma/100) * sqrt(t));
+}</code></pre><br/><br/>
+
+
+				<h3 class="text-center" id="theta">Theta</h3><br/>
+
+				<p>
+				$$ \boxed
+				{
+				\left.
+					\begin{array}{r c l}
+					\theta_{call} &=& - \frac{S N'(d1) \sigma}{2 \sqrt t} - r K \exp(-r t)  N(d2)\\
+					\theta_{put} &=& - \frac{S N'(d1) \sigma}{2 \sqrt t} + r K \exp(-r t)  N(-d2)\\
+					\end{array}
+				\right.
+				} $$
+				</p><br/><br/>	
+			
+			<h4>Pour un <code>call</code></h4>	
+			
+			<pre class="line-numbers"><code class="language-c++">double Black_Scholes_THETA_CALL(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   double d2 = d1 - ((sigma/100)*sqrt(t));
+
+   return -(S*(sigma/100)*nsqrt(t)) - (r/100)*K*exp(-(r/100)*t)*N(d2);	
+}</code></pre><br/><br/>
+
+			<h4>Pour un <code>put</code></h4>	
+			
+			<pre class="line-numbers"><code class="language-c++">double Black_Scholes_THETA_PUT(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   double d2 = d1 - ((sigma/100)*sqrt(t));
+
+   return -(S*(sigma/100)*nsqrt(t)) + (r/100)*K*exp(-(r/100)*t)*N(-d2);	
+}</code></pre><br/><br/>
+
+			<h3 class="text-center" id="vega">Vega</h3><br/>
+
+			<p>
+			$$ \boxed{ \nu = S \sqrt t N'(d1) } $$
+			</p><br/><br/>		
+			
+			<pre class="line-numbers"><code class="language-c++">double Black_Scholes_VEGA(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   double d2 = d1 - ((sigma/100)*sqrt(t));
+
+   return K*t*exp(-(r/100)*t)*N(d2);
+}</code></pre><br/><br/>
+
+
+				<h3 class="text-center" id="rho">Rho</h3><br/>
+
+				<p>
+				$$
+				\boxed
+				{
+				\left.
+					\begin{array}{r c l}
+					\rho_{call} &=& K t \exp(-r t) N(d2)\\
+					\rho_{put} &=& - K t \exp(-r t) N(-d2)\\
+					\end{array}
+				\right.
+				}
+				$$
+				</p><br/><br/>		
+			
+				<h4>Pour un <code>call</code></h4>	
+			
+				<pre class="line-numbers"><code class="language-c++">double Black_Scholes_RHO_CALL(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   double d2 = d1 - ((sigma/100)*sqrt(t));
+
+   return K*t*exp(-(r/100)*t)*N(d2);
+}</code></pre><br/><br/>
+
+				<h4>Pour un <code>putt</code></h4>	
+			
+				<pre class="line-numbers"><code class="language-c++">double Black_Scholes_RHO_PUT(const double& S, const double& K, const double& r, const double& sigma, const double& t)
+{
+   double d1 = (log(S/K) + (r/100)*t)/((sigma/100)*sqrt(t)) + 0.5*(sigma/100)*sqrt(t);
+
+   double d2 = d1 - ((sigma/100)*sqrt(t));
+
+   return -K*t*exp(-(r/100)*t)*N(-d2);
+}</code></pre><br/><br/>
+
+			</div>
+		</div>
+
+	</div> <!-- container end -->
+
+	<script src="/dist/js/app.min.js"></script>
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+
+</body>
+
+</html>

@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Le modèle de Cox-Ross-Rubinstein</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/dev/cv.html">Auteur</a></li>
+					<li><a href="/dev/sciences.html">Sciences</a></li>
+					<li><a href="/dev/sport.html">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav>  
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>Nous allons ici découvrir notre premier modèle d'<code>évaluation de la prime d'une option</code> : le <code>modèle de Cox-Ross-Rubinstein</code>! Un grand maitre de la finance sommeille en chacun de nous, je vous le dis moi !</p>
+		</div>
+	</div>
+		
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-xs-8 col-xs-offset-2">
+				
+				<h3>Prix de l'action</h3>
+
+				<p>Une action voit son prix évoluer au cours du temps, à la baisse comme à la hausse. Mais comment allons-nous représenter ces fluctuations ?</p>
+
+				<p>Supposons que l'on achète une action A à un instant \(t\); on notera sa valeur : \(S_{t}\). Quel sera son prix à l'instant d'après, que l'on notera \(t + 1 \) ?</p>
+				
+				<p>Le prix de l'actif A à l'instant \(t + 1 \) sera en général différent de son prix à l'instant \(t\). Nous supposerons alors que le nouveau prix de l'action est soit inférieur à l'ancien prix, soit supérieur.
+				Nous avons donc seulement deux possibilités pour ce nouveau prix :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					S_{t + 1, bas} &=& bas \times S_{t}\\
+					S_{t + 1, haut} &=& haut \times S_{t}\\
+					\end{array}
+				\right.
+				$$
+				</p>
+				
+				<p>Nous avons simplement borné le nouveau prix par la valeur maximale qu'il pourrait avoir et sa valeur minimale, par l'intermédiaire des facteurs <em>bas</em> et <em>haut</em>, avec respectivement :</p>
+
+				<p>
+				$$ 0 \leqslant bas \leqslant haut $$
+				</p>
+				
+				<p>Nous pouvons maintenant réitérer l'opération, puis encore et encore jusqu'à ce que celà soit suffisant.
+				Le temps va alors s'écouler par "pas", que nous appelerons <code>périodes</code>, et de ce fait une avancée dans le 
+				temps sera simplement simulé par le passage d'une période t à une période t + 1.</p>
+				
+				<p>A chaque pas de temps, le prix de l'actif sous-jacent à l'option ne peut prendre que 2 valeurs distinctes :
+				nous parlerons alors de <code>modèle binomiale</code>.</p>
+					
+				<p>Par opposition, il est tout à fait pssoible de construire un modèle où le temps s'écoulerait d'une manière continue (sans "trous" si vous préferez!) mais il s'agit là d'un autre modèle, appelé modèle de <em>Black-Scholes</em> sur lequel
+				nous reviendrons plus tard. A noter que ce dernier est un cas limite du modèle actuel, où le pas de temps tend vers 0.</p>
+
+				<p>Enfin, une dernière remarque s'impose concernant les facteurs <em>bas</em> et <em>haut</em> : les valeurs de ceux-ci sont en général estimées via des méthodes statistiques sur l'historique du prix de l'actif au cours du temps et sont considérées 
+				comme constantes au cours du temps. Ceci peut s'avérer plus ou moins réaliste si l'on réitère le processus un grand nombre de fois.</p>
+
+				<h3>Le modèle de Cox-Ross-Rubinstein</h3>
+				
+				<p>Le modèle que nous allons étudier ici s'appelle le <code>modèle de Cox-Ross-Rubinstein</code> ou encore <code>modèle binomial</code>. Il a été développé en 1979 par ses auteurs : <em>John Carrington Cox</em>, <em>Stephen Alan "Steve" Ross</em> et <em>Mark Edward Rubinstein</em>.</p>
+				
+				<p>Comme pour tout modèle, que ce soit en physique, en biologie ou bien comme ici en finance, celui-ci repose sur 
+				des hypothèses. Ainsi, rappelons le tout de même : un modèle ne saurait décrire exactement la réalité et reste une représentation plus ou moins réaliste de celle-ci. Il est donc primordiale de bien définir les hypothèses, qui peuvent être plus ou moins forte, que l'on émet pour construire ce modèle et de les garder à l'esprit pour toujours savoir
+				sur quoi on travaille.</p>
+					
+				<blockquote class="bg-info">
+					<h4>Modèle de Cox-Ross-Rubinstein</h4>
+					<p>
+						<ul>
+							<li>L'option est <code>européenne</code> : l'échéance est fixée</li>
+							<li>Le modèle est <code>discret</code> et <code>binomiale</code> : à chaque pas de temps, la valeur de l'actif sous-jacent ne peut prendre que 2 valeurs qui sont (bas et haut sont constants dans le temps)
+								$$
+								\left\{
+									\begin{array}{r c l}
+									S_{t + 1, bas} &=& bas \times S_{t}\\
+									S_{t + 1, haut} &=& haut \times S_{t}\\
+									\end{array}
+								\right.
+								$$
+							</li>
+							<li>Le modèle respecte le <code>principe de non-arbitrage</code></li>
+						</ul>
+					</p>
+				</blockquote>
+
+				<ul class="pager">
+  					<li class="next"><a href="/dev/finance_crr2.html"> > Formule binomiale à période unique</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+	<script src="/dist/js/app.min.js"></script>
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	
+</body>
+
+</html>

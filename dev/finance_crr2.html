@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Formule à période unique</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/dev/cv.html">Auteur</a></li>
+					<li><a href="/dev/sciences.html">Sciences</a></li>
+					<li><a href="/dev/sport.html">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav>  
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>Nous allons nous servir du <code>modèle de Cox-Ross-Rubinstein</code> pour extraire une expression nous donnant la valeur de la prime de l'option.</p>
+			<p>Dans un premier temps, nous exprimerons une première formule qui ne prendra en compte qu'<code>une seule période</code>. Celle-ci, bien que peu réaliste, est tout à fait pertinente d'un point de vue pédagogique puisqu'elle permet de saisir toute l'essence du modèle d'une manière simple.</p>
+		</div>
+	</div>
+		
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-xs-8 col-xs-offset-2">
+				
+				<h3>Formule binomiale à période unique</h3>
+
+				<p>Notons :
+				<ul>
+					<li>Le prix de notre action à la date \(t\) : \(S_{t}\)</li>
+					<li>Le prix de notre action à la date \(t + 1\) : \(S_{t + 1}\)</li>
+				</ul>
+				</p>
+				
+				<p>Il est donc naturel de vouloir évaluer la <code>variation</code> \(r_{t}\) de cette action par rapport à son prix initial :</p>
+				
+				<p>
+					$$ r_{t} = \frac{S_{t + 1} - S_{t}}{S_{t}} $$
+				</p>
+	
+				<p>On va alors chercher à déterminer la <code>variation moyenne</code> \(\mu \) de cette action :</p>
+				
+				<p>
+					$$ \mu = \frac{1}{n} \sum_{i=1}^{n} r_{t_{i}} $$
+				</p> 
+	
+				<p>Tant que nous y sommes, évaluons l'écart moyen à la code moyenne, c'est-à-dire l'<code>écart-type</code> \(\sigma \) 
+				défini tel que:</p>
+				
+				<p>
+					$$ \sigma^{2} = \frac{1}{n}\sum_{i=1}^{n}(r_{t_{i}}-\mu)^{2} $$
+				</p>
+	
+
+				<p>Nous pouvons ainsi définir les constantes \(b\) (pour <em>bas</em>) et \(h\) (pour <em>haut</em>) comme suit :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					b &=& 1 + \mu - \sigma\\
+					h &=& 1 + \mu + \sigma\\
+					\end{array}
+				\right.
+				$$
+				</p>
+	
+				<p>Supposons maintenant que nous possédons un <code>portefeuille</code> \(X\) c'est-à-dire un ensemble d'instruments financiers regroupés dans un même "sac" et qui interagissent entre eux; celui-ci étant constitué de \(a_{t}\) actions A et d'un compte d'épargne.</p>
+
+				<p>Ce portefeuille, classique, nous permet de faire travailler notre argent tranquillement sans prendre de risque avec le compte d'épargne tout en opérant sur les marchés grâce aux actions. C'est un bon équilibre qui permet à la fois de limiter le risque de perte tout en gardant la possibilité de gains non négliageables, c'est pourquoi il est appelé <code>portefeuille de couverture</code> :
+				$$ X_{t} = a_{t} \times S_{t} + C_{t} $$</p>
+				
+				<p>Bien évidemment, ce portefeuille est dépendant du temps car aussi bien le nombre d'actions que la valeur de l'action A et celle du compte d'épargne peuvent varier dans le temps. Ainsi, au départ, c'est-à-dire au temps \(t_{0}\), la valeur du portefeuille
+				\(X\) est :</p>
+
+				<p>
+					$$ X_{0} = a_{0} \times S_{0} + C_{0} $$
+				</p>
+
+				<p>
+				Une période plus tard, c'est-à-dire à la fin pour notre modèle simpliste unipériodique, au temps \(t_{1}\), le prix de l'action ainsi que la valeur du compte d'épargne ont évolués (nous supposons ici que le nombre d'actions \(a\) n'a pas changé) et nous
+				avons donc :</p>
+				
+				<p>
+					$$ X_{1} = a_{0} \times S_{1} + C_{1} = a_{0} \times S_{1} + C_{0}(1 + r) $$
+				</p>
+	
+				<p>Le portefeuille de couverture n'est pas qu'un exemple simpliste et on peut tout à fait démontrer rigoureusement que
+				la valeur d'une option à tout instant \(t\) est égale à ce portefeuille de couverture :</p>
+
+				<p>
+					$$ \forall t > t_{0} \quad X_{t} = V(t) $$</p>
+	
+				<p>Nous allons maintenant chercher à exprimer le nombre d'actions initiale \(a_{0}\), ainsi que la somme initiale à placer dans notre compte d'épargne \(C_{0}\), que doit contenir notre portefeuille de couverture pour être efficient.</p>
+
+				<p>Pour ce faire, il doit satisfaire la relation suivante :</p>
+				
+				<p>
+					$$ X_{1} = V(S_{1}) $$
+				</p>
+	
+				<p>Ceci équivaut à :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					a_{0} \times h \times S_{0} + (1 + r)C_{0} &=& V_{1}(h \times S_{0})\\
+					a_{0} \times b \times S_{0} + (1 + r)C_{0} &=& V_{1}(b \times S_{0})\\
+					\end{array}
+				\right.
+				$$
+				</p>
+				
+				<p>Soustrayons maintenant les deux égalités et nous obtenons :
+				$$ a_{0} = \frac{V_{1}(hS_{0}) - V_{1}(bS_{0})}{(h - b)S_{0}} $$
+				</p>
+				
+				<p>Maintenant, multiplions la première égalité par \(b\) et la seconde égalité par \(h\) :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					b \times a_{0} \times h \times S_{0} + b \times C_{0} \times (1 + r) &=& b \times V_{1}(h - S_{0})\\
+					h \times a_{0} \times b \times S_{0} + h \times C_{0} \times (1 + r) &=& h \times V_{1}(b - S_{0})\\
+					\end{array}
+				\right.
+				$$
+				</p>
+				
+				<p>Soustrayons encore une fois ces deux égalités et nous obtenons :</p>
+
+				<p>
+					$$ b \times V_{1}(hS_{0}) - h \times V_{1}(bS_{0}) = (b - h)C_{0}(1 + r) $$
+				</p>
+				
+				<p>D'où :</p>
+
+				<p>
+					$$ C_{0} = \frac{b \times V_{1}(hS_{0}) - h \times V_{1}(bS_{0})}{b - h} \times \frac{1}{1 + r} $$
+				</p>
+				
+				<p>Nous avons donc :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					a_{0} &=& \frac{V_{1}(hS_{0}) - V_{1}(bS_{0})}{(h - b)S_{0}}\\
+					C_{0} &=& \frac{b \times V_{1}(hS_{0}) - h \times V_{1}(bS_{0})}{b - h} \times \frac{1}{1 + r}\\
+					\end{array}
+				\right.
+				$$
+				</p>
+				
+				<p>Nous pouvons maintenant nous placer dans quelques cas concrets afin de vérifier la validité des expressions précédentes : <br/></p>
+
+				<h4><u>Cas 1</u> : K < b \(S_{0}\) < h \(S_{0}\)</h4>
+				
+				<p>Dans ce cas, le vendeur de l'option réalise toujours un profit.
+				En effet, nous avons donc :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					b \times S{0} - K > 0\\
+					h \times S{0} - K > 0\\
+					\end{array}
+				\right.
+				$$
+				</p>
+
+				<p>Rappellons nous alors de l'expression \(V_{T} = Max\{S_{T} - K ; 0\}\). Nous avons donc :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					V_{1}( hS_{0}) &=& hS_{0} - K\\
+					V_{1}( bS_{0}) &=& bS_{0} - K\\
+					\end{array}
+				\right.
+				$$
+				</p>
+	
+				<p>Il est alors possible de calculer \(a_{0}\) dans ce cas là :</p>
+
+				<p>
+					$$ a_{0} = \frac{(hS_{0} - K) - (bS_{0} - K)}{(h - b)S_{0}} = 1 $$
+				</p>
+	
+				<p>Et de même pour \(C_{0}\) :</p>
+
+				<p>
+				$$ C_{0} = \frac{b \times (hS_{0} - K) - h \times (bS_{0} - K)}{b - h} \times \frac{1}{1 + r} $$
+				$$ \Leftrightarrow $$
+				$$ C_{0} = \frac{-b \times K + h \times K}{b - h} \times \frac{1}{1 + r} $$
+				$$ \Leftrightarrow $$
+				$$ C_{0} = \frac{-K}{1 + r} $$
+				</p>
+	
+				<p>Le portefeuille de couverture est donc constitué de : 
+				<ul>
+					<li>Une action A</li>
+					<li>Une dette \(\frac{K}{1 + r}\)</li>
+				</ul>
+				</p>
+
+				<h4><u>Cas 2</u> : b \(S{0}\) < h \(S{0}\) < K </h4>
+				
+				<p>C'est le cas inverse du cas 1. Ici, nous aurons donc :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					V_{1}(hS_{0}) &=& 0\\
+					V_{1}( bS_{0}) &=& 0\\
+					\end{array}
+				\right.
+				$$
+				</p>
+				
+				<p>Nous voyons ainsi que le portefeuille de couverture n'est constitué d'aucune action et ne possède également pas de compte
+				d'épargne!</p>
+
+				<p>Celà est tout à fait logique car le strike étant toujours supérieur à la valeur de l'action sur le marché,
+				l'acheteur n'exercera jamais son option d'achat (ou alors il n'a rien compris du tout!) et donc le portefeuille de couverture ne sera jamais constitué. L'option n'a aucune valeur marchande!</p>
+	
+				<h4><u>Cas 3</u> : b \(S{0}\) < K < h \(S{0}\) </h4>
+				
+				<p>C'est le cas intermédiaire des cas 1 et 2. Nous avons :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					V_{1}(hS_{0}) &=& hS_{0} - K\\
+					V_{1}(bS_{0}) &=& 0\\
+					\end{array}
+				\right.
+				$$
+				</p>	
+
+				<p>D'où :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					a_{0} &=& \frac{hS_{0} - K - 0}{(h - b)S_{0}}\\
+					C_{0} &=& \frac{b \times (hS_{0} - K) - h \times 0}{b - h} \times \frac{1}{1 + r}\\
+					\end{array}
+				\right.
+				$$
+				$$ \Leftrightarrow $$
+				$$
+				\left\{
+					\begin{array}{r c l}
+					a_{0} &=& \frac{hS_{0} - K}{(h - b)S_{0}}\\
+					C_{0} &=& \frac{b \times (hS_{0} - K)}{b - h}\\
+					\end{array}
+				\right.
+				$$
+				</p>
+
+				<p>Rappelons que le portefeuille de couverture est exprimé ainsi :</p>
+
+				<p>
+					$$ X_{0} = a_{0} \times S_{0} + C_{0} $$</p>
+	
+				<p>Dans ce cas, il prendra la valeur suivante :</p>
+
+				<p>
+				$$ X_{0} = \frac{hS_{0} - K}{(h - b)S_{0}} \times S_{0} + \frac{b \times (hS_{0} - K)}{b - h} \times \frac{1}{1 + r} $$</p>
+				$$ \Leftrightarrow $$
+				$$ X_{0} = (1 - \frac{b}{1 + r}) \times \frac{hS_{0} - K}{h - b} $$
+				</p>
+				
+				<p>Nous pouvons ainsi remarquer deux choses :	
+				<ul>
+					<li>La valeur du portefeuille de couverture est d'autant plus grande que la différence \(h - b\) est faible. Ceci est tout à logique à partir du moment où l'on se rend compte que cette différence ne représente rien d'autre que la volatilité de l'actif sous-jacent à l'option!</li>
+					<li>La valeur du portefeuille de couverture est de plus en plus grande à mesure que le plafond de l'actif sous-jacent devient de plus en plus important par rapport au strike</li>
+				</ul>
+				</p>	
+	
+				<p>Maintenant, rappelons nous que la valeur du portefeuille de couverture est assimilable à la valeur de l'option. De plus, le <code>principe de non-arbitrage</code> nous assure que cette relation est également valable initialement. Nous pouvons ainsi proposer une expression permettant de fournir la valeur de la prime de l'option \(V_{0}\) :</p>
+
+				<p>
+				$$ V_{0} = \frac{V_{1}(hS_{0}) - V_{1}(bS_{0})}{h - b}  + \frac{b \times V_{1}(hS_{0}) + h \times V_{1}(bS_{0})}{b - h} \times 
+				\frac{1}{1 + r}  $$
+				</p>
+					 
+				<p>Essayons de reformuler un peu cette expression afin de la rendre plus "parlante"!</p>
+
+				<p>Pour ce faire, multiplions le premier terme du membre de droite par \(\frac{1 +r}{1 +r}\), ce qui revient à le multiplier par \(1\). Cette artifice mathématique, bien qu'à première vue bien inutile, va nous servir pour mettre cettre expression sous une forme plus <em>user-friendly</em> :</p>
+
+				<p>
+				$$ V_{0} = \frac{V_{1}(hS_{0}) - V_{1}(bS_{0})}{h - b}  \times \frac{1 + r}{1 + r} + \frac{b \times V_{1}(hS_{0}) + h \times 
+				V_{1}(bS_{0})}{b - h} \times \frac{1}{1 + r} $$ 
+				$$ \Leftrightarrow $$
+				$$ V_{0} = \frac{1}{1 + r} \times \frac{V_{1}(hS_{0}) - V_{1}(bS_{0}) + V_{1}(hS_{0}) \times r - V_{1}(bS_{0}) \times r + 
+				h \times V_{1}(bS_{0}) - b \times V_{1}(hS_{0})}{h - b} $$
+				$$ \Leftrightarrow $$
+				$$ V_{0} = \frac{1}{1 + r} \times [\frac{V_{1}(hS_{0})(1 - b + r)}{h - b} + \frac{V_{1}(bS_{0})(- 1 - r + h)}{h - b}] $$
+				$$ \Leftrightarrow $$
+				$$ V_{0} = \frac{1}{1 + r} \times [\frac{V_{1}(hS_{0})((1 + r)- b)}{h - b} + \frac{V_{1}(bS_{0})(h - (1 + r))}{h - b}] $$</p>
+
+				<p>Posons alors :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					q &=& \frac{(1+ r) - b}{h - b}\\
+					1 - q &=& \frac{h - (1 + r)}{h - b}\\
+					\end{array}
+				\right.
+				$$
+				</p>
+	
+				<p>D'après le principe de non-arbitrage, nous avons l'inégalité suivante :</p>
+
+				<p>
+					$$ b \leqslant (1 + r) \leqslant h $$
+				</p>
+	
+				<p>Ce qui nous donne :</p>
+
+				<p>
+				$$
+				\left\{
+					\begin{array}{r c l}
+					b - b &\leqslant& (1 + r) - b &\leqslant& h - b\\
+					- b &\geqslant& (1 + r) &\geqslant& - h\\
+					\end{array}
+				\right.
+				$$
+				$$ \Leftrightarrow $$
+				$$
+				\left\{
+					\begin{array}{r c l}
+					0 &\leqslant& \frac{(1 + r) - b}{h - b} &\leqslant& 1\\
+					h - b &\geqslant& h - (1 + r) &\geqslant& h - h\\
+					\end{array}
+				\right.
+				$$
+				$$ \Leftrightarrow $$
+				$$
+				\left\{
+					\begin{array}{r c l}
+					0 &\leqslant& q &\leqslant& 1\\
+					0 &\leqslant& 1 - q &\leqslant& 1\\
+					\end{array}
+				\right.
+				$$
+				</p>
+
+				<p>Si je vous parle d'une quantité dont la valeur est toujours comprise entre \(0\) et \(1\) vous me dites ... ? Une <code>probabilité</code> bien sûr!</p>
+				
+				<p>Et oui, effectivement, les quantités \(q\) et \(1 - q\) ne sont rien d'autres que les probabililtés respectives que
+				la valeur de l'actif sous-jacent soit maximale ou bien, à contrario, minimale suivant notre modèle binomiale.</p>
+
+				<p>Notre prime \(V_{0}\), se révêle donc être une moyenne de ses différents états, pondérée par le taux \(r\), ce qui correspond, mathématiquement, à ce que l'on appelle une <code>espérance</code> :</p>
+
+				<p>
+					$$ \boxed{ V_{0} = \frac{1}{1 + r}[q \times V_{1}(hS_{0}) + (1 - q) \times V_{1}(bS_{0})] } $$
+				</p>
+
+
+				<ul class="pager">
+					<li class="previous"><a href="/dev/finance_crr1.html"> < La modèle de Cox-Ross-Rubintein</a></li>
+  					<li class="next"><a href="/dev/finance_crr3.html"> > La formule de Cox-Ross-Rubintein</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+	<script src="/dist/js/app.min.js"></script>
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	
+</body>
+
+</html>

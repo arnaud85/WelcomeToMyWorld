@@ -68,8 +68,8 @@ gulp.task('watch', function () {
     gulp.watch(devFolder.sass + "*.scss", ['style']);
     gulp.watch(devFolder.js + "*.js", ['scripts']);
     gulp.watch(devFolder.img+"*", ['images']);
-    gulp.watch([roots.base + 'index.html', roots.dev + '*.html'], ['html']);
-    // gulp.watch(roots.base + "**/*.html").on("change", browserSync.reload);
+    gulp.watch(roots.dev + '*.html', ['html']);
+    gulp.watch(roots.base + "index.html").on("change", browserSync.reload);
 
 });
 

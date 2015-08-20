@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mouvement brownien géométrique</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/dev/cv.html">Auteur</a></li>
+					<li><a href="/dev/sciences.html">Sciences</a></li>
+					<li><a href="/dev/sport.html">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav>  
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>Attention, là, c'est du lourd. Sortez les parachutes, on va se taper un gros morceau ! Respirez un grand coup et si vous êtes prêts, suivez moi pour partir à la conquête du <code>modèle de Black-Scholes</code> !</p>
+		</div>
+	</div>
+		
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-xs-8 col-xs-offset-2">
+				
+				<h3>Le lemme d'Itô</h3>
+
+				<p>Comme pour le <em>modèle de Cox-Ross-Rubinstein</em>, nous allons tout d'abord chercher à représenter mathématiquement les fluctuations du prix d'une action au cours du temps.</p>
+				
+				<p>Par contre, cette fois-ci, le prix de l'action va varier en <code>continue</code> et de manière <code>aléatoire</code>. Nous allons ainsi montrer que l'on peut rendre compte de ce phénomène, à condition de posséder les outils adéquat. Et c'est justement l'objet de cette partie.</p>
+
+				<p>Avant toute chose, il est nécessaire d'introduire un concept mathématique abstrait dont nous aurons besoin 
+				par la suite dans nos calculs.</p>
+
+				<p>Nous parlons ici de phénomènes aléatoires au cours du temps, c'est ce que nous appelons un <code>processus
+				stochastique</code>.</p>
+				
+				<p>Ainsi, plus académiquement parlant, nous appelerons processus stochastique, une famille de variables aléatoires \(X_{t} \) définies sur le même espace de probabilité.</p>
+				
+				<p>Pour un certain évenement \(\omega \) appartenant à l'espace des évènements \(\Omega \), la valeur de la varibale aléatoire est : \(X_{t}(\omega) \).</p>
+
+				<p>Enfin, la trajectoire, encore appelée ensemble des réalisations du processus stochastique est définie par l'application
+				suivante :</p>
+
+				<p>
+					$$ t \rightarrow X_{t}(\omega) $$
+				</p>
+				
+				<p>Nous définissons alors le processus suivant, appelé <code>processus d'Itô</code> pour la variable aléatoire \(X_{t} \) :</p>
+
+				<p>
+					$$ dX_{t} = \mu_{t} dt + \sigma_{t} dB_{t} $$
+				</p>
+
+				<p>Le <code>lemme d'Itô</code> nous permet alors de définir une différentielle du second ordre pour un processus stochastique :</p>
+
+				<p>
+				$$ \boxed{ d[f(X_{t}, t)] = \frac{\partial f}{\partial t} dt + \frac{\partial f}{\partial X_{t}} dX_{t} + 
+							\frac{1}{2} \frac{\partial^{2} f}{\partial X_{t}^{2}} \sigma_{t}^{2} dt } $$
+				</p>
+	
+				<h3>Le mouvement brownien géométrique</h3>				
+
+				<p>La question est : comment allons-nous pouvoir représenter le prix d'un actif financier au cours du temps,
+				en sachant que celui-ci varie continuellement et de manière aléatoire!</p>
+
+				<p>Et bien, pour ce faire, le modèle de Black-Scholes est fondé sur cette hypothèse : le prix d'une action est 
+				représenté en tout temps par un <code>mouvement Brownien géométrique</code>. Derrière ce nom, il est vrai quelque peu
+				barbare, se cache la représentation d'un marche totalement aléatoire au cours du temps et qui ne possède <code>pas de mémoire</code>.</p>
+
+				<p>Décrit pour la première fois en 1827 par son créateur, le botaniste <em>Robert Brown</em>, qui observait le
+				mouvement de particules à l'intérieur de grains de pollen de <em>Clarkia Pulchella</em> (une fleur sauvage nord américaine), le mouvement Brownien, encore appelé <code>processus de Wiener</code>, décrit la trajectoire aléatoire d'une grosse particule immergée dans un fluide et qui n'est soumise à rien d'autre que des chocs avec les petites molécule du fluide 
+				environnant. Depuis lors, ce modèle est extrêmemnt utilisé pour représenter des phénomènes stochastique (variant aléatoirement dans le temps).</p>
+
+				<p>Ainsi, par analogie, le prix de l'actif financier va continuer à fluctuer, à la hausse, comme à la baisse; ces fluctuations pouvant
+				être assimilées avec des "chocs", des "intéractions" avec les autres actifs du marché et ceci indépendemment de valeurs précédentes
+				de l'action.</p>	
+
+				<p>Le prix d'un actif financier se modélise donc par un mouvement Brownien particulier, appelé mouvement Brownien géométrique,
+				qui se présente sous la forme suivante :</p>
+
+				<p>
+					$$ \boxed{ dS(t) = \mu S(t) dt + \sigma S(t) dB(t) } $$
+				</p>
+
+				<p>Nous pouvons ainsi voir qu'il est composé d'un premier terme totalement prédictif, où \(\mu \) désigne 
+				ce que l'on nomme le <code>drift</code> ou encore la dérive par rapport au temps du prix de l'actif, mais également
+				d'un terme stochastique, comprenez par là totalement aléatoire.</p>
+
+				<p>Ce second terme est composé de la <code>volatilité</code> \(\sigma \) et du facteur \(dB(t) \), le fameux 
+				mouvement Brownien. Ce dernier terme est donc responsable du caractère aléatoire de la valeur de l'actif au cours du temps.</p>
+
+				<p>Il est à noter, et c'est une remarque très importante, que les termes \(\mu \) et \(\sigma \) sont constants dans ce modèle, ce qui va en effet permettre de donner une solution analytique au prix de l'action \(S(t) \) en fonction du temps.</p>
+
+				<p>En nous servant du lemme d'Itô, nous pouvons obtenir une expresion analytique des fluctuations du prix de l'action au cours du temps.</p>
+				 
+				<p>Il est ainsi possible de transformer l'équation précédente en divisant celle-ci par le terme \(S(t) \), supposé bien évidemment non nul :</p>
+	
+				<p>
+					$$ \frac{dS(t)}{S(t)} = \mu dt + \sigma dB(t) $$
+				</p>
+
+				<p>Ce qui est équivalent à :</p>
+				
+				<p>
+					$$ dln(S(t)) = \mu dt + \sigma dB(t) $$
+				</p>
+
+				<p>Nous allons à présent chercher à exprimer cette différentielle plus finement à l'aide d'un développement 
+				limité à l'ordre deux.</p>
+		
+				<p>Nous obtenons ainsi, grâce au <em>lemme d'Itô</em> :</p>
+
+				<p>
+				$$ dln(S(t)) = \frac{\partial ln(S(t))}{\partial t} + \frac{\partial ln(S(t))}{\partial S}  + 
+				\frac{1}{2}\frac{\partial^{2} ln(S(t))}{\partial S^{2}}$$
+				</p>
+
+				<p>Avec : 
+				<ul>
+					<li>\(\frac{\partial ln(S(t))}{\partial t} = 0 \)</li>
+					<li>\(\frac{\partial ln(S(t))}{\partial S} = \frac{1}{S(t)}(\mu S(t)dt + \sigma S(t)dB(t)) \)</li>
+					<li>\(\frac{1}{2}\frac{\partial^{2} ln(S(t))}{\partial S^{2}} = \frac{1}{2}\frac{-1}{S(t)^{2}}(\mu^{2}S(t)^{2}dt^{2} + 
+					\sigma^{2}S(t)^{2}dB(t)^{2} + 2 \mu \sigma S(t)^{2} dB(t)) \)</li>
+				</ul>
+				</p>
+
+				<p>De plus, on a :
+				<ul>
+					<li>\(dt^{2} = 0\)</li>
+					<li>\(dtdB(t) = 0\)</li>
+					<li>\(dB(t)^{2} = 1\)</li>
+				</ul>
+				</p>
+
+				<p>D'où :</p>
+				
+				<p>
+					$$ dln(S(t)) = \mu dt + \sigma dB(t) - \frac{1}{2}\sigma^{2}dt $$
+				</p>
+
+				<p>$$ \Leftrightarrow $$</p>
+
+				<p>
+					$$ dln(S(t)) = (\mu - \frac{1}{2}\sigma^{2})dt + \sigma dB(t) $$
+				</p>
+
+				<p>Intégrons cette équation : </p>
+
+				<p>
+					$$ ln(S(t)) - ln(S(0)) = (\mu - \frac{1}{2}\sigma^{2})(t-0) + \sigma \int dB(t) $$
+				</p>
+				
+				<p>Enfin, il suffit de prendre l'exponentielle de l'expression précédente pour obtenir une formule analytique représentant le prix de l'action en fonction du temps S(t) :</p>
+				
+				<p>
+					$$ \boxed{ S(t) = S(0) \exp ((\mu - \frac{1}{2}\sigma^{2})t + \sigma B(t)) } $$
+				</p>
+
+				<ul class="pager">
+					<li class="next"><a href="/dev/finance_bs_2.html"> > Modèle de Black-Scholes</a></li>
+				</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+	<script src="/dist/js/app.min.js"></script>
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	
+</body>
+
+</html>

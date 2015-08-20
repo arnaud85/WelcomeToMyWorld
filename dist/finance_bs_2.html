@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Formule de Black-Scholes</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/dev/cv.html">Auteur</a></li>
+					<li><a href="/dev/sciences.html">Sciences</a></li>
+					<li><a href="/dev/sport.html">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav>  
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>Nous venons de voir comment représenter les variations du prix d'une action au cours du temps : celle-ci décrit un mouvement Brownien géométrique. Nous cherchons maintenant à évaluer la <code>valeur d'une option</code>, d'achat ou de vente, que nous appelerons \(V \), sur cette action; le prix de l'action variant d'une façon <code>continue</code> dans le temps et <code>aléatoire</code>. C'est l'objet du <code>modèle de Black-Scholes</code>.</p>
+		</div>
+	</div>
+		
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-xs-8 col-xs-offset-2">
+
+			<h3>L'équation de Black-Scholes</h3>
+
+			<p>On part de notre cher <code>lemme d'Itô</code>:</p>
+
+			<p>
+				$$
+				dV = \frac{\partial V(S, t)}{\partial t} dt + \frac{\partial V(S, t)}{\partial S} dS + \frac{1}{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}} \sigma^{2} S^{2}dt 
+				$$
+			</p>
+
+			<p>On injecte l'expression décrivant le <code>prix de l'action</code> dans cette expression :</p>
+
+			<p>
+				$$ 
+				dV = \frac{\partial V(S, t)}{\partial t} dt + 
+					\frac{\partial V(S, t)}{\partial S} (\mu S(t) dt + \sigma S(t) dB(t)) + 
+					\frac{1}{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}} \sigma^{2} S^{2}dt 
+				$$				
+			</p>
+
+			<p>A présent, nous allons regrouper les termes totalement déterministes, facteurs de \(dt \), et isoler le seul terme aléatoire, c'est-à-dire celui contenant le <code>mouvement Brownien</code> \(dB(t) \) :</p>
+
+			<p>
+				$$ 
+				dV = (\frac{\partial V(S, t)}{\partial t} + \mu S(t) \frac{\partial V(S, t)}{\partial S} + \frac{1}{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}} \sigma^{2} S^{2}) dt + \sigma S(t) \frac{\partial V(S, t)}{\partial S} dB(t) 
+				$$	
+			</p>
+
+			<p>Souvenons-nous de notre portefeuille <code>riskless</code>. Celui-ci est composé d'un nombre constant d'actions, que nous
+			nommerons \(\Delta \), et que des options. Fabriquons donc notre portefeuille riskless à partir de l'expression précédente en lui ajoutant nos \(\Delta \) actions :</p>
+
+			<p>
+				$$ 
+				dV + \Delta dS = (\frac{\partial V(S, t)}{\partial t} + \mu S(t) \frac{\partial V(S, t)}{\partial S} +
+				\frac{1}{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}} \sigma^{2} S^{2}) dt + \sigma S(t) \frac{\partial V(S, t)}{\partial S} dB(t) + \Delta dS 
+				$$
+			</p>
+
+			<p>Avec l'expression de \(dS \) et en réarrangeant un peu de façon à, comme précédemment, séparer les termes déterministes et 
+			stochastiques, nous obtenons :</p>
+
+			<p>
+				$$ 
+				dV + \Delta dS = (\frac{\partial V(S, t)}{\partial t} + \mu S(t) \frac{\partial V(S, t)}{\partial S} +
+				\frac{1}{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}} \sigma^{2} S^{2} + 
+				\mu S(t) \Delta) dt + \sigma S(t) (\frac{\partial V(S, t)}{\partial S}  + \Delta ) dB(t) 
+				$$
+			</p>
+
+			<p>Maintenant, attention les yeux! Nous allons éliminer le risque dans ce portefeuille! Comment faire ? Rien de plus simple : éliminons le terme aléatoire de 
+			l'équation!</p>
+
+			<p>	
+				$$ 
+				(\frac{\partial V(S, t)}{\partial S}  + \Delta ) dB(t) = 0 \Leftrightarrow \boxed{\Delta = - \frac{\partial V(S, t)}{\partial S}}
+				$$
+			</p>
+				
+			<p>Des termes s'annulent et nous avons alors :</p>
+
+			<p>
+				$$ 
+				dV - \frac{\partial V(S, t)}{\partial S} dS = (\frac{\partial V(S, t)}{\partial t} + 
+				\frac{1}{2} \sigma^{2} S^{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}}) dt $$
+				$$ \Leftrightarrow $$
+				$$ \frac{d(V - \frac{\partial V(S, t)}{\partial S} S)}{dt} = \frac{\partial V(S, t)}{\partial t} + 
+				\frac{1}{2} \sigma^{2} S^{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}} 
+				$$
+			</p>
+
+			<p>Or, par définition, avec le taux d'intérêt \(r \) :</p>
+
+			<p>
+				$$ 
+				\frac{d(V + \Delta dS)}{dt} = r \times (V + \Delta dS) $$
+				$$ \Leftrightarrow $$
+				$$ \frac{d(V - \frac{\partial V(S, t)}{\partial S} S)}{dt} = r \times (V - \frac{\partial V(S, t)}{\partial S} S) $$
+			</p>
+				
+			<p>On réarrange un peu tout ça et on obtient une magnifique <code>équation différentielle stochastique</code> qui n'est autre que la fameuse <code>équation de Black-Scholes</code> :</p>
+
+			<p>
+				$$ 
+				\boxed{ \frac{\partial V(S,t)}{\partial t} + r S \frac{\partial V(S, t)}{\partial S} + \frac{1}{2} \sigma^{2} S^{2} \frac{\partial^{2} V(S, t)}{\partial S^{2}}) - r V = 0 } 
+				$$
+			</p>
+
+			<h3>Le modèle de Black-Scholes</h3> 				
+			<p>Le <code>modèle de Black-Scholes</code>, ou encore <code>Black-Scholes-Merton</code>, est le modèle le plus utilisé au monde quand on parle d'évaluation d'option. C'est un standard que chaque opérateur de marché connait sur le bout des doigts.</p>
+				
+			<p>Publié pour la première fois par ses auteurs <em>Fischer Black</em> et <em>Myron Scholes</em> en 1973, celui-ci a connu un succès retentissant et s'est très vite imposé comme le <em>graal</em> des modèles de <em>pricing</em> d'option.</p>
+				
+			<p>Un peu plus tard, <em>Robert Merton</em> contribuera à l'amélioration de ce modèle ce qui lui vaudra de recevoir, en compagnie de son collègue <em>Myron Scholes</em>, le prix Nobel d'économie en 1997 (<em>Fischer Black</em> étant décédé en 1995, il n'a pu recevoir le prix Nobel, mais sa contibution fut mentionné).</p>
+				
+			<p>Ultra usité et très réaliste dans une certaine mesure, ce modèle repose cependant sur des hypothèses fortes.</p>
+				
+			<blockquote class="bg-info">
+			<h4>Modèle de Black-Scholes</h4>
+			<p>
+				<ul>
+					<li>L'option est <code>européenne</code> : l'échéance est fixée</li>
+					<li>Le modèle est <code>continu</code> et le prix de l'action suit un <code>mouvement Brownien géométrique</code></li>
+					<li>Le modèle respecte le <code>principe de non-arbitrage</code></li>
+					<li>La valeur de l'option sur l'actif sous-jacent est la solution de l'<code>équation de Black-Scholes</code> :
+						$$ 
+						\frac{\partial V}{\partial t} + r S \frac{\partial V}{\partial S} + 
+						\frac{1}{2}\sigma^{2}S^{2}\frac{\partial^{2} V}{\partial S^{2}} - r V = 0 
+						$$
+					</li>
+				</ul>
+			</p>
+			</blockquote>
+				
+			<ul class="pager">
+				<li class="previous"><a href="/dev/finance_bs_1.html"> < Prix de l'action</a></li>
+				<li class="next"><a href="/dev/finance_bs_3.html"> > Formule de Black-Scholes</a></li>
+			</ul>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+	<script src="/dist/js/app.min.js"></script>
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	
+</body>
+
+</html>

@@ -68,9 +68,20 @@ gulp.task('watch', function () {
     gulp.watch(devFolder.sass + "*.scss", ['style']);
     gulp.watch(devFolder.js + "*.js", ['scripts']);
     gulp.watch(devFolder.img+"*", ['images']);
-    gulp.watch(roots.base + "**/*.html").on("change", browserSync.reload);
+    gulp.watch([roots.base + 'index.html', roots.dev + '*.html'], ['html']);
+    // gulp.watch(roots.base + "**/*.html").on("change", browserSync.reload);
 
 });
+
+// HTML
+gulp.task('html', function() {
+
+    return gulp.src([roots.base + 'index.html', roots.dev + '*.html'])
+        .pipe(gulp.dest(roots.dist))
+        .pipe(browserSync.stream())
+        .pipe(notify({ message: 'Html task complete' }));
+});
+
 
 // STYLE
 gulp.task('style', function() {

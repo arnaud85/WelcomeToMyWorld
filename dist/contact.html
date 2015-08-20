@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Auteur</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="#">Accueil</a></li>
+					<li><a href="#">Auteur</a></li>
+					<li><a href="#">Sciences</a></li>
+					<li><a href="#">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav> 
+
+	<div class="container">
+
+		<h1>Contactez-moi :</h1>
+
+		<form class="form-horizontal" role="form">
+			
+			<div class="form-group">
+				<label class="control-label col-xs-2" for="email">Email :</label>
+				
+				<div class="col-xs-6">
+			  		<input type="email" class="form-control" id="email" value="'.stripslashes($email).'" placeholder="Enter email">
+				</div>
+		  	</div>
+
+		  	<div class="form-group">
+				<label class="control-label col-sm-2" for="email">Message :</label>
+				
+				<div class="col-sm-6">
+			  		<textarea class="form-control" id="message" name="message" rows="5">'.stripslashes($message).'</textarea>
+				</div>
+		  	</div>
+
+  			<div class="form-group"> 
+    			<div class="col-sm-offset-2 col-sm-10">
+      				<button type="submit" class="btn btn-default">Envoyer</button>
+    			</div>
+  			</div>
+		</form>
+
+	</div> <!-- container end -->
+
+	<script src="/dist/js/app.min.js"></script>
+
+</body>
+
+</html>

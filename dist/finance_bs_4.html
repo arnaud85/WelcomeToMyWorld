@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Les lettres grecques</title>
+	<link rel="stylesheet" href="/dist/css/style.min.css">
+</head>
+
+<body>
+
+	<nav class="navbar navbar-default navbar-fixed-top">
+  		<div class="container">
+  			<div class="navbar-header">
+				<button type="button" class="navbar-toggle visible-xs" data-toggle="push" data-target="#myNavbar" data-direction="right" aria-expanded="false" aria-controls="navbar">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+    		</div>
+    		<div id="myNavbar">
+				<ul class="nav navbar-nav">
+					<li><a href="/">Accueil</a></li>
+					<li><a href="/dev/cv.html">Auteur</a></li>
+					<li><a href="/dev/sciences.html">Sciences</a></li>
+					<li><a href="/dev/sport.html">Sport</a></li>
+				</ul>
+    		</div>
+  		</div>
+	</nav>  
+
+	<div class="jumbotron">
+		<div class="container">
+			<p>On a survécu au <code>modèle de Black-Scholes</code> et on a (brillament) dégagé une expression permettant d'évaluer la valeur d'une option d'achat ou de vente sur un actif sous-jacent.</p>
+				
+			<p>Mais on peut encore aller plus loin (si, si, croyez-moi !) en s'intéressant aux variations de ce <em>call</em>, ou <em>put</em>, par rapport à divers paramètres. Ces indicateurs spécifiques sont appelées très sobrement <code>lettres grecques</code>.</p>
+		</div>
+	</div>
+		
+
+	<div class="container">
+
+		<div class="row">
+
+			<div class="col-xs-8 col-xs-offset-2">
+
+			<h3>Delta</h3>
+				
+			<p>La lettre grecque <code>Delta</code> représente la <code>sensibilité</code> de la valeur d'une option par rapport à une variation donnée du prix de l'actif sous-jacent à celle-ci, aussi bien pour un call que pour un put.</p>
+
+			<p>Il prend alors la forme suivante :</p>
+
+			<p>
+			$$
+			\boxed 
+			{
+			\left.
+				\begin{array}{r c l}
+				\delta_{call} &=& \frac{\partial C}{\partial S} = N(d1)\\
+				\delta_{put} &=& \frac{\partial P}{\partial S} = \delta_{call} - 1 = N(d1) - 1\\
+				
+				\end{array}
+			\right.
+			}
+			$$								
+			</p> 
+
+			<p>Ici, \(N(x) \) représente la <code>loi normale centrée réduite</code>.</p>
+
+			<p>Nous pouvons voir ici que \(\delta \) est nécessairement compris entre \(0\) et \(1\) pour un <em>call</em> et, symétriquement, compris entre \(-1\) et \(0\) pour un <em>put</em>.</p>
+
+			<p>Tandis que \(\delta \) pour un <em>call </em> est une fonction croissante du prix de l'actif sous-jacent, \(\delta \) pour un <em>put</em>, lui, est une fonction décroissante du prix de l'actif sous-jacent.</p>
+
+			<p>Quand \(\delta = 0.5 \), c'est-à-dire quand le prix de l'actif sous-jacent est égal au <em>strike</em>, on dit que l'option est <code>à la monnaie</code>.</p>
+
+			<p>En effet, ceci se comprend facilement : plus le prix de l'actif sous-jacent est élevé et plus la probabilité que
+			le <em>call</em> soit dans la monnaie est grande. Inversement, plus le prix de l'actif sous-jacent est bas et plus la probabilité que le <em>put</em> soit dans la monnaie est grande.</p>
+
+			<p>Enfin, logiquement, \(\delta \) pour un un portefeuille d'option est la somme des \(\delta \) respectifs des options.</p>
+
+			<h3>Gamma</h3>
+
+			<p>Le facteur <code>Gamma</code> va, en quelques sortes, nous renseigner sur la <code>vitesse d'évolution</code> du prix de l'option par rapport au prix de l'actif sous-jacent :</p>
+			
+			<p>
+			$$ 
+			\boxed{ \gamma_{call} = \gamma_{put} = \frac{\partial^{2} C}{\partial S^{2}} = \frac{\partial^{2} P}{\partial S^{2}} = \frac{N'(d1)}{S \sigma \sqrt t} } 
+			$$
+			</p>
+
+			<p>Par analogie avec la physique, on peut voir ce facteur \(\gamma \) comme une accélération du prix de l'option, si on considère \(\delta \) comme sa vitesse.</p>
+
+			<p>\(\gamma \) est maximum lorsque l'option est à la monnaie.</p>
+
+			<p>Enfin, tout naturellement, \(\gamma \) pour un portefeuille d'options est la somme des \(\gamma \) de chacune des options qui le composent.</p>
+
+			<h3>Theta</h3>
+
+			<p><code>Theta</code> nous renseigne sur l'<code>évolution de la valeur de l'option au cours du temps</code> :</p>
+			
+			<p>
+			$$
+			\boxed
+			{
+			\left.
+				\begin{array}{r c l}
+				\theta_{call} &=& - \frac{\partial C}{\partial t} &=& - \frac{S N'(d1) \sigma}{2 \sqrt t} - r K \exp(-r t)  N(d2)\\
+				\theta_{put} &=& - \frac{\partial P}{\partial t} &=& - \frac{S N'(d1) \sigma}{2 \sqrt t} + r K \exp(-r t)  N(-d2)\\
+				\end{array}
+			\right.
+			}
+			$$
+			</p>
+
+			<h3>Vega</h3>
+
+			<p>Le facteur <code>Vega</code> représente la <code>sensibilité du prix de l'option par rapport à la volatilité de l'actif sous-jacent</code> :</p>
+
+			<p>
+				$$ \boxed{ \nu_{call} = \nu_{put} = \frac{\partial C}{\partial \sigma} = \frac{\partial P}{\partial \sigma} = S \sqrt t N'(d1) } $$
+			</p>
+
+			<p>Pourquoi mesurer le \(\nu \) ? Et bien car une augmentation parallèle de la volatilité aura plus d'impact sur les options dont la date d'échéance est éloignée que sur celles dont celle-ci est proche.</p>
+
+			<h3>Rho</h3>
+
+			<p>Enfin, <code>Rho</code> va nous renseigner sur le <code>taux de variation de la valeur de la prime par rapport au taux d'intérêt</code> :</p>
+
+			<p>
+			$$
+			\boxed
+			{
+			\left.
+				\begin{array}{r c l}
+				\rho_{call} &=& \frac{\partial C}{\partial r} &=& K t \exp(-r t) N(d2)\\
+				\rho_{put} &=& \frac{\partial P}{\partial r} &=& - K t \exp(-r t) N(-d2)\\
+				\end{array}
+			\right.
+			}
+			$$
+			</p>
+
+			</div>
+
+		</div>
+
+	</div>
+	
+	<script src="/dist/js/app.min.js"></script>
+
+	<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"> </script>
+	
+</body>
+
+</html>

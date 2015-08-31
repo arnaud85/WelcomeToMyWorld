@@ -61,7 +61,8 @@ gulp.task('watch', function () {
         },
 
         // browser: ["google chrome", "firefox"]
-        browser: ["google chrome"]
+        // browser: ["google chrome"]
+        browser: ["firefox"]
 
     });
 

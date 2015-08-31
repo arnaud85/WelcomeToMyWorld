@@ -70,6 +70,13 @@ body {
 }
 /****************** END OF THUMBNAIL ***************/
 
+/********************** CAROUSEL *****************/
+.carousel-inner > .item > img {
+
+  width: 100%;
+}
+/****************** END OF CAROUSEL *****************/
+
 
 /*********************** RESPONSIVE ****************/
 @media screen and (max-width: 767px) {

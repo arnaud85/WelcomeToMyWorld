@@ -28,6 +28,3 @@ GIT:
 - alias gstat="git status" 
 - alias gci="git commit -am "
 - alias gpm="git push origin master"
-
-SSH:
-alias sshw="ssh u74932464@www.welcometomyworld.fr"
